@@ -1,0 +1,223 @@
+.container {
+    display: contents;
+}
+
+.header-repeat {
+    background-image: url('../../assets/img/repeat.png');
+    background-repeat: repeat-x;
+    height: 42px;
+    margin-left: -20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.content {
+    display: block;
+    text-align: center;
+    // width: 61%;
+    max-width: 1181px;
+    margin: 32px auto 0 auto;
+}
+
+.text-header {
+    position: absolute;
+    top: 210px;
+    left: 0;
+    right: 0;
+}
+
+.texto {
+    margin: 0 auto 28px auto;
+    text-transform: uppercase;
+    font-family: "Montserrat";
+    font-weight: 900;
+    font-size: 90px;
+    letter-spacing: -0.02em;
+    line-height: 77px;
+    text-align: center;
+    color: #000;
+}
+
+.bigote {
+    margin-top: 200px;
+}
+
+.prod-descripcion {
+    margin: 20px 10px 20px 10px;
+    font-family: "Montserrat";
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    color: black;
+    text-align: center;
+    line-height: 35px;
+}
+
+.form-card {
+    filter: drop-shadow(0px 3px 20px rgba(123, 132, 139, 0.243));
+    height: 175px;
+    width: 800px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.div-form-group {
+    text-align: left;
+    width: 88%;
+    margin: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.label-form {
+    white-space: nowrap;
+    line-height: 21px;
+    margin-top: -1.5px;
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(67, 73, 78, 1);
+    text-transform: uppercase;
+}
+
+.form-control:focus {
+    border-color: rgba(100, 100, 100, 1)!important;
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;
+}
+
+.form-input {
+    border-bottom: 2px solid #707070;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    margin-top: 55px
+}
+
+.select-delivery {
+    margin: auto auto 3px 16px;
+}
+
+.ng-option.ng-option-selected {
+    color: black !important;
+}
+
+li {
+    display: block;
+}
+
+.label-no-form {
+    margin-bottom: 0px;
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgba(67, 73, 78, 1);
+    text-transform: uppercase;
+}
+
+.check-form {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.check-form-comodidad {
+    margin-left: 2rem;
+    margin-right: 2rem
+}
+
+.div-radio {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
+
+.boton {
+    background: black;
+    color: white;
+    border-radius: 20px;
+    width: 300px;
+    height: 50px;
+}
+
+.validation-errors {
+    color: red;
+}
+
+.check-input {
+    margin-right: 10px;
+}
+
+textarea {
+    resize: none;
+}
+
+.gracias {
+    height: 70px;
+}
+
+.ng-dropdown-panel {
+    height: 150px;
+}
+
+.otros {
+    height: 70px;
+}
+
+@media only screen and (max-width: 770px) {
+    .form-card {
+        width: auto;
+        margin: 20px;
+    }
+    .form-input {
+        margin-top: 20px;
+    }
+    .form-control {
+        font-size: 14px;
+    }
+    .label-form {
+        font-size: 14px;
+    }
+    .texto {
+        font-size: 30px;
+    }
+    .text-header {
+        top: 145px;
+    }
+    .bigote {
+        margin-top: 100px;
+    }
+    .div-form-group {
+        text-align: left;
+        margin: auto;
+    }
+    .div-radio {
+        display: flex;
+        width: 100%;
+    }
+    .check-form {
+        margin-left: 16.5px;
+        margin-right: 0.5rem;
+    }
+    .check-input {
+        margin-right: 0px;
+    }
+    .label-form {
+        white-space: initial;
+    }
+    .check-form-comodidad {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    .gracias {
+        height: 180px;
+    }
+    .otros {
+        height: 140px;
+    }
+}

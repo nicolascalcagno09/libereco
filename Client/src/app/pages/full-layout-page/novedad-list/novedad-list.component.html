@@ -1,0 +1,93 @@
+<section id="basic-datatable" class="mb-3">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Novedades</div>
+        </div>
+    </div>
+    <div class="row mt-3 d-none d-sm-block">
+        <div class="col-sm-12">
+            <input type="text" class="filter" placeholder="Buscá por título ..."
+                (keyup)="updateFilter($event)" />
+            <ngx-datatable (sort)="onSort($event)" class="bootstrap" [loadingIndicator]="loadingIndicator" [rows]="novedades" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [reorderable]="reorderable" [limit]="10">
+                <ngx-datatable-column name="Imagen" [width]="50">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div class="center">
+                            <img [src]="row.imagen_path" alt="imagen" class="img-sabor">
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Título" prop="nombre" sort="true" [width]="500" [resizeable]="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.titulo}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Desde" prop="desde" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.desde}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Hasta" prop="Hasta" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.hasta}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="¿Genérica?" prop="generica" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.visibilidad ? 'Si':'No'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Acciones">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                        <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarNovedad(row)'></i>
+                        <i class="fa fa-bell notificar ml-3" data-toggle="tooltip" data-placement="right" title="Enviar notificación" (click)='notificar(row)'></i>
+                        <i class="far fa-trash-alt eliminar ml-3" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarNovedad(row)'></i>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+</section>
+
+
+<div class="card d-lg-none" *ngFor="let row of novedades">
+    <div class="card-body">
+        <h5 class="card-title"><b>Título:</b> {{row.titulo}}</h5>
+        <h5 class="card-title"><b>Desde</b>: {{row.desde}}</h5>
+        <h5 class="card-title"><b>Hasta:</b>: {{row.hasta}}</h5>
+        <h5 class="card-title"><b>¿Es genérica?:</b>: {{row.visibilidad ? 'Si':'No'}}</h5>
+        <hr>
+        <div class="card-text">
+            <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+            <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarNovedad(row)'></i>
+            <i class="fa fa-bell eliminar ml-3" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='notificar(row)'></i>
+            <i class="far fa-trash-alt notificar ml-3" data-toggle="tooltip" data-placement="right" title="Notificar" (click)='eliminarNovedad(row)'></i>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Detalle de la novedad</h4>
+        <button type="button" class="close" aria-label="Cerrar" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <span class="sub-tittle">Titulo: </span>{{novedadSelect?.titulo}} <br />
+        <span class="sub-tittle">Descripción: </span>{{novedadSelect?.descripcion}} <br />
+        <span class="sub-tittle">Subtitulo: </span>{{novedadSelect?.subtitulo}} <br />
+        <span class="sub-tittle">Generica: </span>{{novedadSelect?.visibilidad ? 'Si':'No'}} <br />
+        <span class="sub-tittle">Desde: </span>{{novedadSelect?.desde}} <br />
+        <span class="sub-tittle">Hasta: </span>{{novedadSelect?.hasta}} <br />
+        <span class="sub-tittle">Sucursales: </span>{{novedadSelect?.visibilidad ? 'Todas':''}}<br />
+        <div *ngFor="let suc of novedadSelect.sucursales">
+            {{suc.localidad}}
+        </div>
+        <span class="sub-tittle">Imagen: </span><br />
+        <img [src]="novedadSelect.imagen_path" alt="imagen" style="height: 200px;">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cerrar</button>
+    </div>
+</ng-template>

@@ -1,0 +1,59 @@
+.card-bottom {
+    padding-bottom: 35px;
+}
+
+.select-delivery {
+    margin: auto auto 3px 16px;
+}
+
+.sabor-container {
+    display: flex;
+}
+
+.sabor-subtitle {
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    font-size: 1rem;
+}
+
+.sabor-label {
+    margin: auto 0px;
+    width: 160px;
+}
+
+.sabor-select {
+    margin: auto auto 3px 16px;
+    width: 140px;
+}
+
+.pre-container {
+    display: flex;
+    padding: 0 16px;
+}
+
+.pre-radio {}
+
+.pre-label {
+    width: 240px;
+    margin: auto 0;
+}
+
+.pre-input {
+    width: 80px;
+    text-align: center;
+}
+
+h1 {
+    font-weight: bold !important;
+    color: #3d3d3d;
+    margin-top: 50px !important;
+}
+
+h1:first {
+    margin-top: 0px !important;
+}
+
+.bu {
+    margin-top: 50px;
+}

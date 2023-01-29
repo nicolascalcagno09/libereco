@@ -1,0 +1,94 @@
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div *ngIf="!isEdit" class="content-header" style="margin-top: -17px;">Nuevo Sabor</div>
+            <div *ngIf="isEdit" class="content-header" style="margin-top: -17px;">Editar Sabor</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form" [formGroup]="saborForm">
+                            <div class="form-body mt-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="titulo">Titulo</label>
+                                            <input type="text" id="titulo" class="form-control border-primary" formControlName="titulo">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.titulo">
+                                                <div class="error-message" *ngIf="saborForm.get('titulo').hasError(validation.type) && (saborForm.get('titulo').dirty || saborForm.get('titulo').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="orden">Orden</label>
+                                            <input type="text" id="orden" class="form-control border-primary" formControlName="orden">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.orden">
+                                                <div class="error-message" *ngIf="saborForm.get('orden').hasError(validation.type) && (saborForm.get('orden').dirty || saborForm.get('orden').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="descripcion">Descripción</label>
+                                            <input type="text" id="descripcion" class="form-control border-primary" formControlName="descripcion">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput6">Categoria</label>
+                                            <ng-select id="projectinput6" [items]="categorias" bindLabel="nombre" bindValue="id" [multiple]="false" placeholder="Seleccione una categoria" formControlName="categoria" [searchable]="false">
+                                            </ng-select>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.categoria">
+                                                <div class="error-message" *ngIf="saborForm.get('categoria').hasError(validation.type) && (saborForm.get('categoria').dirty || saborForm.get('categoria').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="userinput9">Imagen</label>
+                                            <input type="file" accept="image/x-png,image/jpeg" class="form-control-file" id="projectinput9" (change)="imagesPreview($event)">
+                                            <img class="preview-image" [src]="imageFile.link" *ngIf="imageFile">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.imagenPath">
+                                                <div class="error-message" *ngIf="saborForm.get('imagen').hasError(validation.type) && (saborForm.get('imagen').dirty || saborForm.get('imagen').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions center">
+                                <button type="button" *ngIf="!isEdit" class="btn btn-raised btn-primary shadow-z-2" (click)="nuevo()" [disabled]="!saborForm.valid">
+                                    <i class="fa fa-check-circle mr-2"></i> Crear
+                                </button>
+                                <button *ngIf="isEdit" type="button" class="btn btn-raised btn-warning shadow-z-2" (click)="actualizar()">
+                                    <i class="fa fa-check-circle mr-2"></i> Actualizar
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

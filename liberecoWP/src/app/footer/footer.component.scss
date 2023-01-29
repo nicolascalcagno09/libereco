@@ -1,0 +1,49 @@
+#footer {
+    margin-top: 100px;
+    margin-bottom: 70px;
+    text-align: left;
+}
+
+.dflex {
+    display: flex;
+}
+
+.text-container {
+    margin-top: 15px;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 21px;
+    color: #000;
+    font-family: "Montserrat";
+}
+
+.sub-title {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    color: #000;
+    font-family: "Montserrat";
+}
+
+@media only screen and (max-width: 600px) {
+    #footer {
+        margin-top: 170px;
+        margin-bottom: 15px;
+    }
+    .row {
+        display: block;
+        text-align: center;
+    }
+    .dflex {
+        display: contents;
+    }
+    #logo img {
+        margin-bottom: 46px;
+    }
+    .text-container2 {
+        margin-top: 66px;
+    }
+}

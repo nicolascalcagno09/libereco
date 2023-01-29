@@ -1,0 +1,459 @@
+.container {
+    display: contents;
+}
+
+.header-repeat {
+    background-image: url('../../assets/img/repeat.png');
+    background-repeat: repeat-x;
+    height: 42px;
+    margin-left: -20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.content {
+    display: block;
+    text-align: center;
+    // width: 61%;
+    max-width: 1181px;
+    margin: 32px auto 0 auto;
+}
+
+.nocontent {
+    display: block;
+    text-align: center;
+    margin: 32px auto 0 auto;
+}
+
+.header {
+    z-index: 100;
+}
+
+.header-img-container {
+    position: relative;
+}
+
+.img-header {
+    width: 100%;
+    object-fit: cover;
+    height: 450px;
+    // filter: brightness(0.62);
+}
+
+.img-header2 {
+    width: 100%;
+    object-fit: cover;
+    height: 651px;
+}
+
+.text-header {
+    margin: auto;
+}
+
+.text {
+    font-family: "Montserrat";
+    font-size: 90px;
+    letter-spacing: -0.02em;
+    line-height: 78px;
+    text-align: center;
+    color: black;
+    font-weight: 900;
+}
+
+.text-blanco {
+    font-family: "Montserrat";
+    font-size: 40px;
+    letter-spacing: -0.02em;
+    line-height: 60px;
+    text-align: center;
+    color: white;
+    font-weight: 900;
+}
+
+.porqueelegirnos {
+    background-color: black;
+    padding: 20px;
+}
+
+.texto2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.00em;
+    line-height: 20px;
+}
+
+.texto-franquiciado {
+    font-family: "Montserrat";
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.00em;
+    line-height: 50px;
+    text-align: center;
+}
+
+.texto3 {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.00em;
+    line-height: 20px;
+    color: black;
+}
+
+.lista {
+    font-size: 14px;
+    line-height: 40px;
+    font-weight: normal;
+}
+
+.queofrecemos {
+    text-align: left;
+    font-size: 32px;
+}
+
+.preguntasfrecuentes {
+    text-align: left;
+    font-size: 32px;
+}
+
+.text-left2 {
+    width: 30%;
+    white-space: nowrap;
+    line-height: 45px;
+    margin-top: -2.5px;
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: -0.2px;
+    text-transform: uppercase;
+    float: left;
+}
+
+.text-right2 {
+    width: 70%;
+    line-height: 32px;
+    text-align: left;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: lighter;
+    font-size: 18px;
+    color: rgba(67, 73, 78, 1);
+    letter-spacing: -0.2px;
+    float: right;
+}
+
+.preguntas {
+    font-weight: bolder;
+    line-height: 16px;
+    color: white;
+}
+
+.propuesta {
+    white-space: nowrap;
+    line-height: 45px;
+    margin-top: -4.5px;
+    text-align: center;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+    letter-spacing: -0.2px;
+    text-transform: uppercase;
+    padding: 20px;
+}
+
+.locales-button {
+    color: white;
+    width: 300px;
+    height: 50px;
+    border-radius: 35px;
+    background: #ff173b;
+    font-family: "Montserrat";
+    font-weight: 900;
+    white-space: nowrap;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 40px;
+    border: none;
+}
+
+.locales-button2 {
+    color: white;
+    width: 130px;
+    height: 40px;
+    border-radius: 35px;
+    background: #ff173b;
+    font-family: "Montserrat";
+    font-weight: 900;
+    white-space: nowrap;
+    font-size: 14px;
+    text-align: center;
+    line-height: 30px;
+    margin-top: 30px;
+    border: none;
+}
+
+.asesoramiento {
+    margin-top: 20px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgba(67, 73, 78, 1);
+    letter-spacing: -0.2px;
+}
+
+.desc-container {
+    display: flex;
+    z-index: 1000;
+    margin: auto;
+    width: fit-content;
+}
+
+.desc-container2 {
+    z-index: 1000;
+    margin: auto;
+}
+
+.contenedor {
+    margin-top: 120px;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.expansion {
+    filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.161));
+    margin-top: 20px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.detalle-container {
+    height: 90px;
+    display: flex;
+    margin: 18px 0;
+}
+
+.detalle-container-left {
+    display: flex;
+    height: 90px;
+    margin: 18px 0;
+    margin-left: 100px;
+}
+
+.video-left {
+    margin-top: 100px;
+    height: 90px;
+    margin: 18px 0;
+    margin-left: 100px;
+}
+
+.logo {
+    width: 30px;
+    height: 30px;
+    margin-top: 12px;
+}
+
+.check {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+.circulo {
+    height: 60px;
+    width: 60px;
+    color: white;
+    border: 2px solid;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.video-container {
+    background-color: rgba(242,242,242,1); 
+    margin-top:150px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    height: 611px;
+    overflow-x: hidden;
+}
+
+.div-container {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+}
+
+.franquiciado-label {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    color: rgba(0,0,0,1);
+    letter-spacing: -0.2px;
+    text-transform: uppercase;
+}
+
+.div-franquiciados {
+    margin-left: 120px;
+    display: inline-block;
+    text-align: left;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+:host ::ng-deep .mat-expansion-panel-content {
+    background-color: white;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+    padding: 25px;
+}
+
+#contactanos {
+    margin-top: 160px;
+}
+
+.ancho {
+    font-weight: 900;
+}
+
+.header-img-container {
+    top: 50px;
+}
+
+:host ::ng-deep .mat-expansion-indicator::after {
+    color: #ff173b !important;
+}
+
+.video{
+    text-align: left;
+}
+
+@media only screen and (max-width: 780px) {
+    .content {
+        margin: 0px;
+    }
+    .contenedor {
+        margin-top: 0px;
+    }
+    .text-left2 {
+        float: left;
+        width: 100%;
+        margin-top: 50px;
+    }
+    .text-right2 {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+    .propuesta {
+        font-size: 20px;
+    }
+    .asesoramiento {
+        font-size: 18px;
+    }
+    .locales-button {
+        font-size: 18px;
+        width: 190px;
+        height: 40px;
+    }
+    .text {
+        font-size: 40px;
+        margin-top: 20px;
+        line-height: 45px;
+    }
+    .text-header {
+        top: 90px;
+    }
+    .header-repeat {
+        display: none;
+    }
+    .header-img-container {
+        top: 20px;
+    }
+    .detalle-container-left {
+        display: flex;
+        height: 90px;
+        margin: 18px 0;
+        font-size: 14px;
+    }
+    .detalle-container {
+        display: flex;
+        height: 90px;
+        margin: 18px 0;
+        font-size: 14px;
+        font-size: 14px;
+    }
+
+    .texto-franquiciado {
+        font-family: "Montserrat";
+        font-size: 30px;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 0.00em;
+        line-height: 50px;
+        text-align: center;
+    }
+    .div-franquiciados {
+        margin-left: auto;
+        display: inline-block;
+        text-align: center;
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        margin-bottom: 50px;
+    }
+    .video{
+        text-align: center;
+    }
+
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        height: 0;
+        overflow: hidden;
+    }
+    
+    .videoWrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+    .div-franquiciados {
+        text-align: center;
+        margin-left: 0px;
+        margin-bottom: 20px;
+    }
+    .propuesta {
+        line-height: 32px;
+        font-size: 32px;
+    }
+    .texto-franquiciado {
+        line-height: 32px;
+        font-size: 32px;
+    }
+}
+}

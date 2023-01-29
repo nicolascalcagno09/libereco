@@ -1,0 +1,188 @@
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div *ngIf="!modeEdit" class="content-header" style="margin-top: -17px;">Nueva Sucursal</div>
+            <div *ngIf="modeEdit" class="content-header" style="margin-top: -17px;">Editar Sucursal </div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card card-bottom">
+                <div class="card-header pb-2">
+                    <h1 class="card-title" id="basic-layout-form">Información</h1>
+                </div>
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form" [formGroup]="sucursalForm">
+                            <div class="form-body">
+                                <div class="row">
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="facebook">Facebook</label>
+                                            <input type="text" id="facebook" class="form-control border-primary"
+                                                formControlName="facebook">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.facebook">
+                                                <div class="error-message"
+                                                    *ngIf="sucursalForm.get('facebook').hasError(validation.type) && (sucursalForm.get('facebook').dirty || sucursalForm.get('facebook').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="latitud">Latitud</label>
+                                            <input type="text" id="latitud" class="form-control border-primary"
+                                                formControlName="latitud">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.latitud">
+                                                <div class="error-message"
+                                                    *ngIf="sucursalForm.get('latitud').hasError(validation.type) && (sucursalForm.get('latitud').dirty || sucursalForm.get('latitud').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="instagram">Instagram</label>
+                                            <input type="text" id="instagram" class="form-control border-primary"
+                                                formControlName="instagram">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.instagram">
+                                                <div class="error-message"
+                                                    *ngIf="sucursalForm.get('instagram').hasError(validation.type) && (sucursalForm.get('instagram').dirty || sucursalForm.get('instagram').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="longitud">Longitud</label>
+                                            <input type="text" id="longitud" class="form-control border-primary"
+                                                formControlName="longitud">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.longitud">
+                                                <div class="error-message"
+                                                    *ngIf="sucursalForm.get('longitud').hasError(validation.type) && (sucursalForm.get('longitud').dirty || sucursalForm.get('longitud').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-12 d-flex">
+                                                <h1 class="card-title mt-3 mb-2" id="basic-layout-form">Delivery</h1>
+                                                <ng-select id="projectinput6" class="select-delivery" [items]="delivery"
+                                                    bindLabel="nombre" bindValue="valor" [multiple]="false"
+                                                    [(ngModel)]="deliveryValue" formControlName="deliveryTiene"
+                                                    [clearable]="false">
+                                                </ng-select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="deliveryTelefono">Teléfono</label>
+                                                    <input type="text" id="deliveryTelefono"
+                                                        class="form-control border-primary"
+                                                        formControlName="deliveryTelefono">
+                                                </div>
+                                                <div class="validation-errors">
+                                                    <ng-container
+                                                        *ngFor="let validation of validation_messages.deliveryTelefono">
+                                                        <div class="error-message"
+                                                            *ngIf="sucursalForm.get('deliveryTelefono').hasError(validation.type) && (sucursalForm.get('deliveryTelefono').dirty || sucursalForm.get('deliveryTelefono').touched)">
+                                                            {{ validation.message }}
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="deliveryCelular">Celular</label>
+                                                    <input type="text" id="deliveryCelular"
+                                                        class="form-control border-primary"
+                                                        formControlName="deliveryCelular">
+                                                </div>
+                                                <div class="validation-errors">
+                                                    <ng-container
+                                                        *ngFor="let validation of validation_messages.deliveryCelular">
+                                                        <div class="error-message"
+                                                            *ngIf="sucursalForm.get('deliveryCelular').hasError(validation.type) && (sucursalForm.get('deliveryCelular').dirty || sucursalForm.get('deliveryCelular').touched)">
+                                                            {{ validation.message }}
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="deliveryHorario">Leyenda</label>
+                                                    <input type="text" id="deliveryHorario"
+                                                        class="form-control border-primary"
+                                                        formControlName="deliveryHorario"
+                                                        [disableControl]="deliveryValue == false">
+                                                </div>
+                                                <div class="validation-errors">
+                                                    <ng-container
+                                                        *ngFor="let validation of validation_messages.deliveryHorario">
+                                                        <div class="error-message"
+                                                            *ngIf="sucursalForm.get('deliveryHorario').hasError(validation.type) && (sucursalForm.get('deliveryHorario').dirty || sucursalForm.get('deliveryHorario').touched)">
+                                                            {{ validation.message }}
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="deliveryCosto">Costo</label>
+                                                    <input type="text" id="deliveryCosto"
+                                                        class="form-control border-primary"
+                                                        formControlName="deliveryCosto"
+                                                        [disableControl]="deliveryValue == false">
+                                                </div>
+                                                <div class="validation-errors">
+                                                    <ng-container
+                                                        *ngFor="let validation of validation_messages.deliveryHorario">
+                                                        <div class="error-message"
+                                                            *ngIf="sucursalForm.get('deliveryCosto').hasError(validation.type) && (sucursalForm.get('deliveryCosto').dirty || sucursalForm.get('deliveryCosto').touched)">
+                                                            {{ validation.message }}
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions center">
+
+                                <button type="button" class="btn btn-raised btn-warning shadow-z-2"
+                                    (click)="actualizar()">
+                                    <i class="fa fa-check-circle mr-2"></i> Actualizar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,172 @@
+<section id="basic-datatable" class="mb-3">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Mensajes</div>
+        </div>
+    </div>
+    <div class="row mt-3 d-none d-sm-block">
+        <input
+        type="text"
+        style="padding:8px;margin: 15px 0px 15px 15px; width: 30%;"
+        placeholder="Buscá por email, ciudad, etc..."
+        (keyup)="updateFilter($event)"
+      />
+        <div class="col-sm-12">
+            <ngx-datatable class="bootstrap" (sort)="onSort($event)" [loadingIndicator]="loadingIndicator" [rows]="contactosNuevos" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [reorderable]="reorderable" [limit]="15">
+                <ngx-datatable-column name="Fecha" prop="createdAt" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.createdAt | date: 'dd-MM-yyyy'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Mail" prop="correoElectronico" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.correoElectronico}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Motivo de Consulta" prop="motivoConsulta" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.motivoConsulta}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Sucursal" prop="sucursal.localidad" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.sucursal?.localidad}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Leido" prop="leida" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.leida == true ? 'Si':'No'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Acciones">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <i style="margin-right: 10px;" class="fas fa-envelope-open ver" data-toggle="tooltip" data-placement="right" title="Marcar como leido" (click)="marcarLeido(row)"></i>
+                        <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                        <i class="far fa-trash-alt eliminar ml-2" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarContacto(row)'></i>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+    <button type="button" class="btn btn-raised btn-primary shadow-z-2" (click)="goToTodos()">
+        <i class="fa fa-check-circle mr-2"></i> Ver todos los mensajes
+    </button>
+</section>
+
+<div class="card d-lg-none" *ngFor="let row of contactosNuevos">
+    <div class="card-body">
+        <h5 class="card-title"><b>Fecha:</b> {{row.createdAt | date: 'dd-MM-yyyy'}}</h5>
+        <h5 class="card-title"><b>Mail</b>: {{row.correoElectronico}}</h5>
+        <h5 class="card-title"><b>Motivo:</b>: {{row.motivoConsulta}}</h5>
+        <h5 class="card-title"><b>Localidad</b>: {{row.sucursal?.localidad}}</h5>
+        <h5 class="card-title"><b>Leido</b>: {{row.leida == true ? 'Si':'No'}}</h5>
+        <hr>
+        <div class="card-text">
+            <i style="margin-right: 10px;" class="fas fa-envelope-open ver" data-toggle="tooltip" data-placement="right" title="Marcar como leido" (click)="marcarLeido(row)"></i>
+            <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+            <i class="far fa-trash-alt eliminar ml-2" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarContacto(row)'></i>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Detalle de mensaje</h4>
+        <button type="button" class="close" aria-label="Cerrar" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <span class="sub-tittle">Fecha: </span>{{contactoSelect?.createdAt | date: 'dd-MM-yyyy'}} <br />
+        </div>
+        <div>
+            <span class="sub-tittle">Mail: </span>{{contactoSelect?.correoElectronico}} <br />
+        </div>
+
+        <div>
+            <span class="sub-tittle">Apellido: </span>{{contactoSelect?.apellido}} <br />
+        </div>
+
+        <div>
+            <span class="sub-tittle">Nombre: </span>{{contactoSelect?.nombre}} <br />
+        </div>
+
+        <div>
+            <span class="sub-tittle">Teléfono: </span>{{contactoSelect?.telefono}} <br />
+        </div>
+
+        <div>
+            <span class="sub-tittle">Motivo Consulta: </span>{{contactoSelect?.motivoConsulta}} <br />
+        </div>
+
+        <div *ngIf="consultaGeneral">
+            <span class="sub-tittle">Consulta: </span>{{contactoSelect?.consulta}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">Sucursal: </span>{{contactoSelect?.sucursal?.localidad}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">¿Porque elegis Libereco?: </span>{{contactoSelect?.porqueElegisLibereco}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">Atencion en local: </span>{{contactoSelect?.atencionEnLocal}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">Limpieza en local: </span>{{contactoSelect?.limpiezaEnLocal}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">¿Cómo te sentiste en el local?:
+            </span>{{contactoSelect?.comoTeSentisteEnElLocal}}<br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">¿Alguna sugerencia, reclamo o algo que nos quieras decir?
+            </span>{{contactoSelect?.sugerencias}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">Tenes algún sabor o producto preferido? </span>{{contactoSelect?.productoPreferido}}<br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">¿Qué sabor o productos te gustaría que tengamos?
+            </span>{{contactoSelect?.saboresParaAgregar}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias">
+            <span class="sub-tittle">En caso de ser necesario: ¿Te podemos contactar desde nuestro equipo de atención al
+                cliente ? </span>{{contactoSelect?.tePodemosContactar == true ? 'Si':'No'}} <br />
+        </div>
+
+        <div *ngIf="informacionFranquicias">
+            <span class="sub-tittle">Localidad de interés: </span>{{contactoSelect?.localidadDeInteres}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias">
+            <span class="sub-tittle">Localidad donde reside: </span>{{contactoSelect?.localidadDondeReside}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias">
+            <span class="sub-tittle">¿Tiene experiencia manejando comercios? </span>{{contactoSelect?.tieneExperienciaManejoComercios == true ? 'Si':'No'}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias">
+            <span class="sub-tittle">¿Tiene experiencia manejando personal? </span>{{contactoSelect?.tieneExperienciaManejoPersonal == true ? 'Si':'No'}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias">
+            <span class="sub-tittle">Dedicacion actual: </span>{{contactoSelect?.dedicacionActual}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias">
+            <span class="sub-tittle">Monto disponible de inversión: </span>{{contactoSelect?.montoDisponibleParaInversion}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias">
+            <span class="sub-tittle">¿Porqué debería ser el priopietario? </span>{{contactoSelect?.porqueDeberiaSerElPropietario}} <br />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cerrar</button>
+    </div>
+</ng-template>

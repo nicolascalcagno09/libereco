@@ -1,0 +1,108 @@
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div *ngIf="!modeEdit" class="content-header" style="margin-top: -17px;">Nueva Presentación</div>
+            <div *ngIf="modeEdit" class="content-header" style="margin-top: -17px;">Editar Presentación </div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form" [formGroup]="presentacionForm">
+                            <div class="form-body mt-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="titulo">Titulo</label>
+                                            <input type="text" id="titulo" class="form-control border-primary" formControlName="titulo">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.titulo">
+                                                <div class="error-message" *ngIf="presentacionForm.get('titulo').hasError(validation.type) && (presentacionForm.get('titulo').dirty || presentacionForm.get('titulo').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="orden">Orden</label>
+                                            <input type="text" id="orden" class="form-control border-primary" formControlName="orden">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.orden">
+                                                <div class="error-message" *ngIf="presentacionForm.get('orden').hasError(validation.type) && (presentacionForm.get('orden').dirty || presentacionForm.get('orden').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="projectinput6">Producto</label>
+                                            <ng-select id="projectinput6" [items]="productos" bindLabel="nombre" bindValue="id" [multiple]="false" placeholder="Seleccione un producto" formControlName="producto" [searchable]="false">
+                                            </ng-select>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.producto">
+                                                <div class="error-message" *ngIf="presentacionForm.get('producto').hasError(validation.type) && (presentacionForm.get('producto').dirty || presentacionForm.get('producto').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="descripcion">Descripción</label>
+                                            <input type="text" id="descripcion" class="form-control border-primary" formControlName="descripcion">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="precio">Precio</label>
+                                            <input type="number" id="precio" class="form-control border-primary" formControlName="precio">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.precio">
+                                                <div class="error-message" *ngIf="presentacionForm.get('precio').hasError(validation.type) && (presentacionForm.get('precio').dirty || presentacionForm.get('precio').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="userinput9">Imagen</label>
+                                            <input type="file" accept="image/x-png,image/jpeg" class="form-control-file" formControlName="imagen" id="projectinput9" (change)="imagesPreview($event)">
+                                            <img class="preview-image" [src]="imageFile.link" *ngIf="imageFile">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.imagenPath">
+                                                <div class="error-message" *ngIf="presentacionForm.get('imagen').hasError(validation.type) && (presentacionForm.get('imagen').dirty || presentacionForm.get('imagen').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions center">
+                                <button type="button" *ngIf="!modeEdit" class="btn btn-raised btn-primary shadow-z-2" (click)="nuevo()" [disabled]="!presentacionForm.valid">
+                                    <i class="fa fa-check-circle mr-2"></i> Crear
+                                </button>
+                                <button *ngIf="modeEdit" type="button" class="btn btn-raised btn-warning shadow-z-2" (click)="actualizar()">
+                                    <i class="fa fa-check-circle mr-2"></i> Actualizar
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

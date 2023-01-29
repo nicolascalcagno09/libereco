@@ -1,0 +1,130 @@
+<section id="basic-datatable" class="mb-3">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Sucursales</div>
+        </div>
+    </div>
+    <div class="row mt-3 d-none d-sm-block">
+        <div class="col-sm-12">
+            <input type="text" class="filter" placeholder="Buscá por localidad ..."
+                (keyup)="updateFilter($event)" />
+            <ngx-datatable class="bootstrap" (sort)="onSort($event)" [loadingIndicator]="loadingIndicator"
+                [rows]="sucursales" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50"
+                [reorderable]="reorderable">
+                <ngx-datatable-column name="Imagen" [width]="70">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div>
+                            <img [src]="row.imagen_path" alt="imagen" class="img-sabor">
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Orden" prop="orden" sort="true" [width]="70">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.orden}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Localidad" prop="localidad" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.localidad}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Dirección" prop="direccion" sort="true" [width]="300">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.direccion}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Activa">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.activo == true ? 'Activa': 'No Activa'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Acciones">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles"
+                            (click)="verDetalles(content, row)"></i>
+                        <i class="fas fa-clock product ml-2" data-toggle="tooltip" data-placement="right"
+                            title="Horarios" (click)='editarTurnos(row)'></i>
+                        <i class="fas fa-ice-cream product ml-2" data-toggle="tooltip" data-placement="right"
+                            title="Productos" (click)='editarProductos(row)'></i>
+                        <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right"
+                            title="Editar" (click)='editarSucursal(row)'></i>
+                        <i class="fas fa-play publicar ml-2" data-toggle="tooltip" data-placement="right"
+                            title="Publicar" *ngIf="!row.activo" (click)="publicarSucursal(row,true)"></i>
+                        <i class="fas fa-play publicar-disabled ml-2" data-toggle="tooltip" data-placement="right"
+                            title="Publicar" *ngIf="row.activo"></i>
+                        <i class="fas fa-power-off despublicar ml-2" data-toggle="tooltip" data-placement="right"
+                            title="Cancelar publicación" *ngIf="row.activo" (click)="publicarSucursal(row,false)"></i>
+                        <i class="fas fa-power-off despublicar-disabled ml-2" data-toggle="tooltip"
+                            data-placement="right" title="Cancelar publicación" *ngIf="!row.activo"></i>
+                        <i class="far fa-trash-alt eliminar ml-2" data-toggle="tooltip" data-placement="right"
+                            title="Eliminar" (click)='eliminarSucursal(row)'></i>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+</section>
+
+<div class="card d-lg-none" *ngFor="let sucursal of sucursales">
+    <img [src]="sucursal.imagen_path" class="card-img-top" style="height: 200px;" />
+    <div class="card-body">
+        <h5 class="card-title"><b>Orden:</b> {{sucursal.orden}}</h5>
+        <h5 class="card-title"><b>Localidad</b>: {{sucursal.localidad}}</h5>
+        <h5 class="card-title"><b>Direccion</b>: {{sucursal.direccion}}</h5>
+        <h5 class="card-title"><b>Activa</b>: {{sucursal.activo == true ? 'Activa': 'No Activa'}}</h5>
+        <hr>
+        <div class="card-text">
+            <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles"
+                (click)="verDetalles(content, sucursal)"></i>
+            <i class="fas fa-clock product ml-2" data-toggle="tooltip" data-placement="right" title="Horarios"
+                (click)='editarTurnos(sucursal)'></i>
+            <i class="fas fa-ice-cream product ml-2" data-toggle="tooltip" data-placement="right" title="Productos"
+                (click)='editarProductos(sucursal)'></i>
+            <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar"
+                (click)='editarSucursal(sucursal)'></i>
+            <i class="fas fa-play publicar ml-2" data-toggle="tooltip" data-placement="right" title="Publicar"
+                *ngIf="!sucursal.activo" (click)="publicarSucursal(sucursal,true)"></i>
+            <i class="fas fa-play publicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Publicar"
+                *ngIf="sucursal.activo"></i>
+            <i class="fas fa-power-off despublicar ml-2" data-toggle="tooltip" data-placement="right"
+                title="Cancelar publicación" *ngIf="sucursal.activo" (click)="publicarSucursal(sucursal,false)"></i>
+            <i class="fas fa-power-off despublicar-disabled ml-2" data-toggle="tooltip" data-placement="right"
+                title="Cancelar publicación" *ngIf="!sucursal.activo"></i>
+            <i class="far fa-trash-alt eliminar ml-2" data-toggle="tooltip" data-placement="right" title="Eliminar"
+                (click)='eliminarSucursal(sucursal)'></i>
+        </div>
+    </div>
+</div>
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Detalle de la sucursal</h4>
+        <button type="button" class="close" aria-label="Cerrar" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <span class="sub-tittle">Localidad: </span>{{sucursalSelect?.localidad}} <br />
+        <span class="sub-tittle">Direccion: </span>{{sucursalSelect?.direccion}} <br />
+        <span class="sub-tittle">Email: </span>{{sucursalSelect?.email}} <br />
+        <!--<span class="sub-tittle">Horario Apertura: </span>{{sucursalSelect?.horarioApertura}} <br />
+        <span class="sub-tittle">Horario Cierre: </span>{{sucursalSelect?.horarioCierre}} <br />-->
+        <span class="sub-tittle">Facebook: </span>{{sucursalSelect?.facebook}} <br />
+        <span class="sub-tittle">Instagram: </span>{{sucursalSelect?.instagram}} <br />
+        <span class="sub-tittle">Latitud: </span>{{sucursalSelect?.latitud}} <br />
+        <span class="sub-tittle">Longitud: </span>{{sucursalSelect?.longitud}} <br />
+        <span class="sub-tittle">Tiene Delivery: </span>{{sucursalSelect?.deliveryTiene == true ? 'Si': 'No'}} <br />
+        <span class="sub-tittle">Telefono delivery: </span>{{sucursalSelect?.deliveryTelefono}} <br />
+        <span class="sub-tittle">Celular delivery: </span>{{sucursalSelect?.deliveryCelular}} <br />
+        <span class="sub-tittle">Horario delivery: </span>{{sucursalSelect?.deliveryHorario}} <br />
+        <span class="sub-tittle">Costo delivery: </span>{{sucursalSelect?.deliveryCosto}} <br />
+        <span class="sub-tittle">Imagen: </span> <br />
+        <img [src]="sucursalSelect.imagen_path" alt="imagen" style="height: 200px;">
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cerrar</button>
+    </div>
+</ng-template>

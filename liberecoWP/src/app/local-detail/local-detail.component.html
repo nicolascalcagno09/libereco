@@ -1,0 +1,356 @@
+<div class="container" id="top">
+    <div id="principal" class="container">
+        <div class="header-repeat"></div>
+        <div class="content">
+            <section class="main-section">
+                <div class="desc-container d-none d-md-flex">
+                    <div class="imagen">
+                        <img [src]="sucursalSelect.imagen_path" class="img1" />
+                        <div class="text-header">
+                            <button mat-raised-button class="button1" (click)="goToFormulario()">
+                                <img src="../../assets/img/chat.png" alt=" " class="chat" />
+                                Calificá Nuestra Sucursal</button>
+                        </div>
+                    </div>
+                    <div class="detalle">
+                        <div class="ciudad">
+                            <span>{{sucursalSelect.localidad}}</span>
+                        </div>
+                        <img src="../../assets/img/bigote.png" alt=" " class="bigote" width="135px" height="15px" /><br>
+                        <div class="mas-detalles">
+                            <div class="detalle-container" *ngIf="sucursalSelect.delivery?.celular">
+                                <img src="../../assets/img/whatsapp.png" class="icons" />
+                                <span>{{sucursalSelect.delivery?.celular}}</span><br>
+                            </div>
+                            <div class="detalle-container" *ngIf="sucursalSelect.delivery?.telefono">
+                                <img src="../../assets/img/phone.png" class="icons" />
+                                <span>{{sucursalSelect.delivery?.telefono}}</span><br>
+                            </div>
+                            <div class="detalle-container">
+                                <img src="../../assets/img/shop.png" class="icons" />
+                                <span>{{sucursalSelect.direccion}}</span><br>
+                            </div>
+                            <div class="detalle-container">
+                                <img src="../../assets/img/open.png" class="icons" />
+                                <div style="width: 100%;">
+                                    <mat-accordion>
+                                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                            (closed)="panelOpenState = false">
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                    <p *ngIf="isOpen == 'Abierto'"><strong>{{isOpen}}</strong> - Hora de
+                                                        cierre {{strFin}}</p>
+                                                    <p *ngIf="isOpen == 'Cerrado'"><strong>{{isOpen}}</strong></p>
+                                                </mat-panel-title>
+                                            </mat-expansion-panel-header>
+                                            <ng-template matExpansionPanelContent>
+                                                <div class="horarios-container" *ngFor="let turno of turnos">
+                                                    <div class="left">
+                                                        <label *ngIf="turno.diaDeLaSemana == 1">Lunes</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 2">Martes</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 3">Miércoles</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 4">Jueves</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 5">Viernes</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 6">Sábado</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 0">Domingo</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 1">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 2">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 3">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 4">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 5">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 6">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 0">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                            </div>
+                            <div class="detalle-container" *ngIf="deliveryValue">
+                                <img src="../../assets/img/scooter.png" class="icons" />
+                                <div style="display: grid;">
+                                    <span class="delivery">DELIVERY</span>
+                                    <span>{{sucursalSelect.delivery.horario}}</span>
+                                    <span>Costo de envío: {{sucursalSelect.delivery.costo}}</span>
+                                </div>
+                            </div>
+                            <div class="detalle-container" *ngIf="!deliveryValue">
+                                <img src="../../assets/img/scooter.png" class="icons" />
+                                <div style="display: grid;">
+                                    <span class="delivery">DELIVERY</span>
+                                    <span>La sucursal no cuenta con delivery</span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="desc-container2 d-md-none d-sm-block">
+                    <div class="imagen2">
+                        <img [src]="sucursalSelect.imagen_path" class="img2" />
+                        <div class="text-header">
+                            <button mat-raised-button class="button1" (click)="goToFormulario()">
+                                <img src="../../assets/img/chat.png" alt=" " class="chat" />
+                                Calificá Nuestra Sucursal</button>
+                        </div>
+                    </div>
+                    <div class="detalle2">
+                        <div class="ciudad2">
+                            <span>{{sucursalSelect.localidad}}</span>
+                        </div>
+
+                        <div class="acciones">
+                            <div class="what" *ngIf="sucursalSelect.delivery?.celular">
+                                <a href="https://api.whatsapp.com/send?phone=+54{{sucursalSelect.delivery?.celular}}">
+                                    <img src="../../assets/img/Icon-logo-whatsapp.png" class="icon4" />
+                                </a>
+                            </div>
+                            <div class="botonllamar" *ngIf="sucursalSelect.delivery?.telefono">
+                                <a href="tel:{{sucursalSelect.delivery?.telefono}}">
+                                    <button mat-raised-button class="boton4">
+                                        Llamar
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="ir">
+                                <!-- <img src="../../assets/img/icon-circle.png " class="icon4" /> -->
+                                <a class="none"
+                                    href="https://maps.google.com/?q={{sucursalSelect.latitud}},{{sucursalSelect.longitud}}">
+                                    <span class="ir2">Ir</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mas-detalles">
+                            <div class="detalle-container" *ngIf="sucursalSelect.delivery?.celular">
+                                <img src="../../assets/img/whatsapp.png" class="icons" />
+                                <span>{{sucursalSelect.delivery?.celular}}</span><br>
+                            </div>
+                            <div class="detalle-container" *ngIf="sucursalSelect.delivery?.telefono">
+                                <img src="../../assets/img/phone.png" class="icons" />
+                                <span>{{sucursalSelect.delivery?.telefono}}</span><br>
+                            </div>
+                            <div class="detalle-container">
+                                <img src="../../assets/img/shop.png" class="icons" />
+                                <span>{{sucursalSelect.direccion}}</span><br>
+                            </div>
+                            <div class="detalle-container">
+                                <img src="../../assets/img/open.png" class="icons" />
+                                <div style="width: 100%;">
+                                    <mat-accordion>
+                                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                            (closed)="panelOpenState = false">
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>
+                                                    <p *ngIf="isOpen == 'Abierto'"><strong>{{isOpen}}</strong> - Hora de
+                                                        cierre {{strFin}}</p>
+                                                    <p *ngIf="isOpen == 'Cerrado'"><strong>{{isOpen}}</strong></p>
+                                                </mat-panel-title>
+                                            </mat-expansion-panel-header>
+                                            <ng-template matExpansionPanelContent>
+                                                <div class="horarios-container" *ngFor="let turno of turnos">
+                                                    <div class="left">
+                                                        <label *ngIf="turno.diaDeLaSemana == 1">Lunes</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 2">Martes</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 3">Miércoles</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 4">Jueves</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 5">Viernes</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 6">Sábado</label>
+                                                        <label *ngIf="turno.diaDeLaSemana == 0">Domingo</label>
+                                                    </div>
+                                                    <div class="right">
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 1">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 2">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 3">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 4">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 5">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 6">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                        <label
+                                                            *ngIf="turno.abierto && turno.diaDeLaSemana == 0">{{turno.inicioManiana}}
+                                                            - {{turno.finManiana}} &nbsp; <label
+                                                                *ngIf="!turno.horarioDeCorrido">/ &nbsp;
+                                                                {{turno.inicioTarde}} -
+                                                                {{turno.finTarde}}</label></label><label
+                                                            *ngIf="!turno.abierto">Cerrado</label>
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                </div>
+                            </div>
+                            <div class="detalle-container" *ngIf="deliveryValue">
+                                <img src="../../assets/img/scooter.png" class="icons" />
+                                <div style="display: grid;">
+                                    <span class="delivery">DELIVERY</span>
+                                    <span>{{sucursalSelect.delivery.horario}} Costo de envío:
+                                        {{sucursalSelect.delivery.costo}}</span>
+                                </div>
+                            </div>
+                            <div class="detalle-container" *ngIf="!deliveryValue">
+                                <img src="../../assets/img/scooter.png" class="icons" />
+                                <div style="display: grid;">
+                                    <span class="delivery">DELIVERY</span>
+                                    <span>La sucursal no cuenta con delivery</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <section class="main-section" style="margin-top: 100px;">
+                <div class="texto">
+                    <span>Helados, SUNDAES<br>
+                        postres o batidos<br>
+                        Vos elegís!</span>
+                </div>
+
+                <div *ngFor="let producto of productos">
+                    <div *ngIf="producto.selected">
+                        <div class="text-title-prod">
+                            {{producto.nombre}}
+                            <input type="checkbox" id=" producto{{producto.id}}" name="producto{{producto.id}}"
+                                [checked]="producto.selected" style="display: none;">
+                        </div>
+                        <div class="text-desc-prod">
+                            <span>{{producto.descripcion}}</span>
+                        </div>
+                        <img src="../../assets/img/bigote.png" alt=" " class="bigote bigote2" width="135px"
+                            height="15px" />
+                    </div>
+
+                    <div class="row" style="display: flex;justify-content: space-around" *ngIf="producto.selected">
+                        <div class="content-prod col-md-6 col-lg-3" *ngFor="let presentacion of producto.presentaciones"
+                            style="max-width: 50%">
+                            <div class="circle-base">
+                                <div class="contenedor">
+                                    <img [src]="presentacion.presentacion.imagen_path" class="img-prod" />
+                                    <div class="precio">
+                                        <span>${{presentacion.precio}}</span>
+                                    </div>
+                                </div>
+                                <div class="text-prod">
+                                    <span>{{presentacion.presentacion.titulo}}</span>
+                                </div>
+                                <div class="text-desc-prod">
+                                    <span>{{presentacion.presentacion.descripcion}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="sabores-buton-container d-none d-md-block" *ngIf="producto.tieneSabores">
+                        <div class="buton-magia">
+                            <button mat-raised-button class="sabores-button" (click)="openDialog()">
+                                SABORES PARA ELEGIR
+                            </button>
+                            <img src="../../assets/img/sabores1.png" alt="" class="sabores-button-img" />
+                        </div>
+                    </div>
+
+                    <div class="sabores-buton-container d-md-none d-sm-block" *ngIf="producto.tieneSabores">
+                        <div class="buton-magia2">
+                            <button mat-raised-button class="sabores-button2" (click)="openDialog()">
+                                VER SABORES
+                            </button>
+                            <img src="../../assets/img/sabores1.png" alt="" class="sabores-button-img2" />
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </section>
+            <app-footer></app-footer>
+        </div>
+        <app-footer-repeat></app-footer-repeat>
+    </div>

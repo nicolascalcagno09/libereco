@@ -1,0 +1,83 @@
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header" style="margin-top: -17px;">Productos de Sucursal </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- PRODUCTOS -->
+    <div class="row text-left">
+        <div class="col-md-12">
+            <div class="card card-bottom">
+
+                <div class="card-content">
+
+                    <div class="px-3">
+                        <div class="form-body">
+
+                            <div class="row" *ngFor="let producto of productos, let a = index">
+                                <div class="col-12" *ngIf="producto.selected">
+                                    <h1 class="card-title mt-3 mb-2" id="basic-layout-form">
+                                        {{producto.nombre}}</h1>
+                                    <input type="checkbox" id=" producto{{producto.id}}" name="producto{{producto.id}}"
+                                        [checked]="producto.selected" (click)="productoSelect(a)"
+                                        style="display: none;">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-4">
+                                            <h4 class="sabor-subtitle mt-3 mb-2" *ngIf="producto.presentaciones.length">
+                                                Presentaciones</h4>
+                                            <div class="row">
+                                                <div class="col-12 mt-2"
+                                                    *ngFor="let presentacion of producto!.presentaciones, let i = index">
+                                                    <div class="pre-container">
+                                                        <input type="radio" class="custom-control-input pre-radio"
+                                                            id="customRadioInline{{presentacion.id}}"
+                                                            [checked]="presentacion.selected"
+                                                            name="customRadioInline{{presentacion.id}}"
+                                                            (click)="presentacionSelect(a, i)">
+                                                        <label class="custom-control-label pre-label"
+                                                            for="customRadioInline{{presentacion.id}}">{{presentacion.titulo}}</label>
+                                                        <input type="number" class="form-control pre-input"
+                                                            [(ngModel)]="presentacion.precio">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xs-12 col-md-8">
+                                            <h4 class="sabor-subtitle mt-3 mb-2" *ngIf="producto.sabores.length">Sabores
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-6 mt-2"
+                                                    *ngFor="let sabor of producto.sabores ">
+                                                    <div class="sabor-container">
+                                                        <label class="sabor-label">{{sabor.titulo}}</label>
+                                                        <ng-select class="sabor-select" [(ngModel)]="sabor.estado"
+                                                            [items]="SaboresEstados" bindLabel="nombre"
+                                                            bindValue="valor" [multiple]="false" [clearable]="false">
+                                                        </ng-select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-actions center">
+
+                        <button type="button" class="btn btn-raised btn-primary shadow-z-2 bu" (click)="guardar()">
+                            <i class="fa fa-check-circle mr-2"></i> Guardar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

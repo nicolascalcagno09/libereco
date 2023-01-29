@@ -1,0 +1,96 @@
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div *ngIf="!modeEdit" class="content-header" style="margin-top: -17px;">Nuevo Producto</div>
+            <div *ngIf="modeEdit" class="content-header" style="margin-top: -17px;">Editar Producto</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form" [formGroup]="productoForm">
+                            <div class="form-body mt-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="userinput2">Nombre</label>
+                                            <input type="text" id="userinput2" class="form-control border-primary" formControlName="nombre">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.nombre">
+                                                <div class="error-message" *ngIf="productoForm.get('nombre').hasError(validation.type) && (productoForm.get('nombre').dirty || productoForm.get('nombre').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="userinput2">Orden</label>
+                                            <input type="text" id="userinput2" class="form-control border-primary" formControlName="orden">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.orden">
+                                                <div class="error-message" *ngIf="productoForm.get('orden').hasError(validation.type) && (productoForm.get('orden').dirty || productoForm.get('orden').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="descripcion">Descripción</label>
+                                            <input type="text" id="descripcion" class="form-control border-primary" formControlName="descripcion">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group mt-3">
+                                            <label for="descripcion">Sabores</label>
+                                            <ui-switch size="small" class="ml-3 swi" [checked]="enabled" (change)="sabor($event)">
+                                            </ui-switch>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-12" *ngIf="enabled">
+                                        <div class="form-group col-md-6">
+                                            <label for="saborNombre">Nombre General</label>
+                                            <input type="text" id="saborNombre" class="form-control border-primary" formControlName="saborNombre">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.saborNombre">
+                                                <div class="error-message" *ngIf="productoForm.get('saborNombre').hasError(validation.type) && (productoForm.get('saborNombre').dirty || productoForm.get('saborNombre').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12" *ngIf="enabled">
+
+
+
+                                        <div class="custom-control custom-radio d-block float-left ml-3 col-md-3" *ngFor="let sabor of sabores">
+                                            <input type="radio" id="customRadio{{sabor.id}}" name="customRadio{{sabor.id}}" [checked]="sabor.selected" (click)="saborSelect(sabor)" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadio{{sabor.id}}">{{sabor.titulo}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions center">
+                                <button type="button" *ngIf="!modeEdit" class="btn btn-raised btn-primary shadow-z-2" (click)="nuevoProducto()" [disabled]="!productoForm.valid">
+                                    <i class="fa fa-check-circle mr-2"></i> Crear
+                                </button>
+                                <button *ngIf="modeEdit" type="button" class="btn btn-raised btn-warning shadow-z-2" (click)="actualizarProducto()">
+                                    <i class="fa fa-check-circle mr-2"></i> Actualizar
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

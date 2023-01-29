@@ -1,0 +1,382 @@
+<div class="container">
+    <div class="header-repeat"></div>
+    <div class="content">
+        <section class="main-section">
+            <div class="text-header texto">
+                <span>CONTACTANOS</span>
+            </div>
+            <img src="../../assets/img/bigote.png" alt=" " class="bigote" width="135px" height="15px" />
+
+            <div class="prod-descripcion">
+                ¡TODO LO QUE NOS PUEDAS APORTAR <br> NOS AYUDA A CRECER!
+            </div>
+        </section>
+
+        <form [formGroup]="contactoForm">
+
+            <div class="card form-card">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="apellido">Apellido</label>
+                    <input type="text" id="apellido" class="form-control form-input" formControlName="apellido" placeholder="Apellido">
+                </div>
+            </div>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.apellido">
+                    <div class="error-message" *ngIf="contactoForm.get('apellido').hasError(validation.type) && (contactoForm.get('apellido').dirty || contactoForm.get('apellido').touched)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <div class="card form-card">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="nombre">Nombre</label>
+                    <input type="text" id="nombre" class="form-control form-input" placeholder="Nombre" formControlName="nombre">
+                </div>
+            </div>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.nombre">
+                    <div class="error-message" *ngIf="contactoForm.get('nombre').hasError(validation.type) && (contactoForm.get('nombre').dirty || contactoForm.get('nombre').touched)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <div class="card form-card">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="userinput2">Correo Electronico</label>
+                    <input type="text" id="userinput2" class="form-control form-input" formControlName="mail" placeholder="Tu direccion de correo electronico">
+                </div>
+            </div>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.mail">
+                    <div class="error-message" *ngIf="contactoForm.get('mail').hasError(validation.type) && (contactoForm.get('mail').dirty || contactoForm.get('mail').touched)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <div class="card form-card">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="telefono">Teléfono</label>
+                    <input type="number" id="telefono" class="form-control form-input" placeholder="Teléfono" formControlName="telefono">
+                </div>
+            </div>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.telefono">
+                    <div class="error-message" *ngIf="contactoForm.get('telefono').hasError(validation.type) && (contactoForm.get('telefono').dirty || contactoForm.get('telefono').touched)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <div class="card form-card" *ngIf="!franquicia" style="z-index: 10;">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="motivoConsulta">Motivo de la consulta</label>
+                    <ng-select id="motivoConsulta" class="form-select" [items]="motivos" (change)="motivoChange($event)" bindLabel="nombre" formControlName="motivoConsulta" bindValue="valor" [multiple]="false" [clearable]="false">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.motivoConsulta">
+                    <div class="error-message" *ngIf="contactoForm.get('motivoConsulta').hasError(validation.type) && (contactoForm.get('motivoConsulta').dirty || contactoForm.get('motivoConsulta').touched)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
+            <div class="card form-card" *ngIf="consultaGeneral" style="z-index: 1;">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="consulta">Escriba aquí su consulta</label>
+                    <textarea type="text" rows="2" id="consulta" class="form-control form-input" style="margin-top:30px" placeholder="Tu respuesta" formControlName="consulta"></textarea>
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="calificacionDeFranquicias" style="z-index: 1;">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="sucursal">Elige tu Libereco</label>
+                    <ng-select id="sucursal" class="form-select" [items]="sucursales" formControlName="sucursal" (change)="onSucursalSelect($event.id)" bindLabel="localidad" bindValue="id" [multiple]="false" [clearable]="false">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="card form-card" style="height: 260px;" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="sucursal" style="margin-bottom: 25px;">¿Porqué elegis
+                        Libereco?</label>
+                    <div class="" *ngFor="let seleccion of porqueElegisLiberecoArray, let i = index">
+                        <label style="margin-bottom: 1rem">
+                            <input style="margin-right: 10px;" type="radio" name="porqueElegisLibereco"
+                                (click)="porqueElegisLiberecoChange(seleccion.valor)"
+                                id="{{seleccion.valor}}">{{seleccion.nombre}}
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="card form-card" style="height: 70px;" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-no-form" for="sucursal">Sólo unas pocas preguntas, ya casi
+                        estamos!</label>
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-form" style="margin-bottom: 25px;">Limpieza en el
+                        local</label>
+                    <br>
+                    <div class="div-radio">
+                        <label>Mala</label>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" type="radio" value="1"
+                                    (click)="limpiezaEnElLocalChange($event.target.value)" name="radio-select-limpieza"
+                                    id="uno">1
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" value="2" type="radio"
+                                    (click)="limpiezaEnElLocalChange($event.target.value)" name="radio-select-limpieza"
+                                    id="dos">2
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" value="3"
+                                    (click)="limpiezaEnElLocalChange($event.target.value)" type="radio"
+                                    name="radio-select-limpieza" id="tres">3
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" value="4"
+                                    (click)="limpiezaEnElLocalChange($event.target.value)" type="radio"
+                                    name="radio-select-limpieza" id="cuatro">4
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" value="5"
+                                    (click)="limpiezaEnElLocalChange($event.target.value)" type="radio"
+                                    name="radio-select-limpieza" id="cinco">5
+                            </label>
+                        </div>
+                        <label class="" for="sucursal">Excelente</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-form" style="margin-bottom: 25px;">Atención en el local</label>
+                    <br>
+                    <div class="div-radio">
+                        <label>Mala</label>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" type="radio" value="1"
+                                    (click)="atencionEnElLocalChange($event.target.value)" name="radio-select-atencion"
+                                    id="uno">1
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" value="2" type="radio"
+                                    (click)="atencionEnElLocalChange($event.target.value)" name="radio-select-atencion"
+                                    id="dos">2
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" value="3"
+                                    (click)="atencionEnElLocalChange($event.target.value)" type="radio"
+                                    name="radio-select-atencion" id="tres">3
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" value="4"
+                                    (click)="atencionEnElLocalChange($event.target.value)" type="radio"
+                                    name="radio-select-atencion" id="cuatro">4
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" value="5"
+                                    (click)="atencionEnElLocalChange($event.target.value)" type="radio"
+                                    name="radio-select-atencion" id="cinco">5
+                            </label>
+                        </div>
+                        <label class="" for="sucursal">Excelente</label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="sucursal" style="margin-bottom: 25px;">¿Cómo te sentis en
+                        nuestra heladería?</label>
+                    <br>
+                    <div class="div-radio">
+                        <label>Incómodo/a</label>
+                        <div class="form-check form-check-inline check-form-comodidad">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" type="radio" value="1"
+                                    (click)="comoTeSentisEnLaHeladeriaChange($event.target.value)"
+                                    name="radio-select-como-te-sentis" id="uno">1
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form-comodidad">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" type="radio" value="2"
+                                    (click)="comoTeSentisEnLaHeladeriaChange($event.target.value)"
+                                    name="radio-select-como-te-sentis" id="dos">2
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form-comodidad">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" type="radio" value="3"
+                                    (click)="comoTeSentisEnLaHeladeriaChange($event.target.value)"
+                                    name="radio-select-como-te-sentis" id="tres">3
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form-comodidad">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" type="radio" value="4"
+                                    (click)="comoTeSentisEnLaHeladeriaChange($event.target.value)"
+                                    name="radio-select-como-te-sentis" id="cuatro">4
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline check-form-comodidad">
+                            <label style="margin-bottom: 1rem">
+                                <input class="check-input" type="radio" value="5"
+                                    (click)="comoTeSentisEnLaHeladeriaChange($event.target.value)"
+                                    name="radio-select-como-te-sentis" id="cinco">5
+                            </label>
+                        </div>
+                        <label>Muy cómodo/a</label>
+                    </div>
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="sugerencia">¿Alguna sugerencia, reclamo o algo que nos
+                        quieras decir?</label>
+                    <input type="text" id="sugerencia" formControlName="sugerencias" class="form-control form-input" placeholder="Tu respuesta">
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="sabor-preferido">Tenes algún sabor o producto preferido?
+                        Contanos!</label>
+                    <input type="text" id="sabor-preferido" formControlName="productoPreferido" class="form-control form-input" placeholder="Tu respuesta">
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="sabor-nuevo">¿Qué sabor o productos te gustaría que
+                        tengamos?</label>
+                    <input type="text" id="sabor-nuevo" formControlName="saboresParaAgregar" class="form-control form-input" placeholder="Tu respuesta">
+                </div>
+            </div>
+            <div class="card form-card" style="height: 260px;" *ngIf="calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="sucursal" style="margin-bottom: 25px;">En caso de ser
+                        necesario: ¿Te podemos contactar <br> desde nuestro equipo de atención al cliente
+                        ?</label>
+                    <div class="">
+                        <label style="margin-bottom: 1rem">
+                            <input style="margin-right: 10px;" type="radio" name="radio-select-contacto" value="Si"
+                                (click)="tePodemosContactarChange($event.target.value)">Si
+                        </label>
+                    </div>
+                    <div class="">
+                        <label style="margin-bottom: 1rem">
+                            <input style="margin-right: 10px;" type="radio" name="radio-select-contacto" value="No"
+                                (click)="tePodemosContactarChange($event.target.value)">No
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="card form-card otros" *ngIf="otro" style="z-index: 1;">
+                <div class="form-group div-form-group">
+                    <label class="label-no-form">Por trabajo deberá presentarse personalmente
+                        con curriculum en mano para solicitar una entrevista en sucursal. </label>
+                </div>
+            </div>
+            <div class="card form-card otros" *ngIf="otro">
+                <div class="form-group div-form-group">
+                    <label class="label-no-form">Para proveedores de servicio y materia primas,
+                        deberán contactarse por el siguiente correo:
+                        <a style="color:#ff173b" href="mailto:info@libereco.com.ar">correo electrónico</a>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card form-card" *ngIf="informacionSobreFranquicias || franquicia" style="z-index: 1;">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="localidadDeInteres">Localidad de interés</label>
+                    <input type="text" id="localidadDeInteres" formControlName="localidadDeInteres" class="form-control form-input" placeholder="Tu respuesta">
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="informacionSobreFranquicias || franquicia">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="localidadDondeReside">Localidad donde reside</label>
+                    <input type="text" id="localidadDondeReside" formControlName="localidadDondeReside" class="form-control form-input" placeholder="Tu respuesta">
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="informacionSobreFranquicias || franquicia">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="tieneExperienciaManejoComercios">¿Tiene experiencia en el manejo de
+                        comercios?</label>
+                    <ng-select id="tieneExperienciaManejoComercios" class="form-select" [items]="experiencia" bindLabel="nombre" formControlName="tieneExperienciaManejoComercios" bindValue="valor" [multiple]="false" [clearable]="false">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="informacionSobreFranquicias || franquicia">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="tieneExperienciaManejoPersonal">¿Tiene experiencia en el manejo de
+                        personal?</label>
+                    <ng-select id="tieneExperienciaManejoPersonal" class="form-select" [items]="personal" bindLabel="nombre" formControlName="tieneExperienciaManejoPersonal" bindValue="valor" [multiple]="false" [clearable]="false">
+                    </ng-select>
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="informacionSobreFranquicias || franquicia">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="dedicacionActual">Dedicación actual</label>
+                    <input type="text" id="dedicacionActual" formControlName="dedicacionActual" class="form-control form-input" placeholder="Tu respuesta">
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="informacionSobreFranquicias || franquicia">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="montoDisponibleParaInversion">Monto disponible de inversión</label>
+                    <input type="number" id="montoDisponibleParaInversion" formControlName="montoDisponibleParaInversion" class="form-control form-input" placeholder="Tu respuesta">
+
+                </div>
+            </div>
+            <div class="card form-card" *ngIf="informacionSobreFranquicias || franquicia">
+                <div class="form-group div-form-group">
+                    <label class="label-form" for="porqueDeberiaSerElPropietario">¿Por que cree que deberíamos elegirlo para representar su ciudad?</label>
+                    <textarea type="text" rows="2" id="porqueDeberiaSerElPropietario" class="form-control form-input" style="margin-top:30px" placeholder="Tu respuesta" formControlName="porqueDeberiaSerElPropietario"></textarea>
+                </div>
+            </div>
+            <div class="card form-card gracias" *ngIf="seleccion && calificacionDeFranquicias">
+                <div class="form-group div-form-group">
+                    <label class="label-no-form">Gracias por haber llegado hasta acá y ayudarnos a mejorar con
+                        tus respuestas, queremos estar cerca de ti y que podamos mejorar juntos como un gran
+                        equipo. </label>
+                </div>
+            </div>
+
+            <div class="card form-card gracias" *ngIf="seleccion && informacionSobreFranquicias">
+                <div class="form-group div-form-group" style="text-align: center;">
+                    <label style="text-align: center;" class="label-no-form">¿Ya conoces nuestra propuesta de
+                        franquicias? <br>
+                        <a style="cursor: pointer;color:#ff173b" (click)="goToSeParte()">La quiero conocer</a>
+                    </label>
+                </div>
+            </div>
+            <div class="form-actions center" style="margin-top:50px" *ngIf="!otro">
+                <button type="button" class="btn boton" (click)="enviar()">
+                    <i class="fa fa-check-circle mr-2"></i> ENVIAR MENSAJE
+                </button>
+            </div>
+
+        </form>
+        <app-footer></app-footer>
+    </div>
+    <app-footer-repeat></app-footer-repeat>
+</div>

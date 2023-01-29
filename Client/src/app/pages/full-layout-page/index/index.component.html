@@ -1,0 +1,149 @@
+<div *ngIf="admin">
+    <div class="d-none d-sm-block contenedor">
+        <div class="card col-md-4" (click)="goToUsuarios()">
+            <img src="../../assets/img/user.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Usuarios</span>
+        </div>
+        <div class="card col-md-4" (click)="goToProductos()">
+            <img src="../../assets/img/productos.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Productos</span>
+        </div>
+        <div class="card col-md-4" (click)="goToSabores()">
+            <img src="../../assets/img/sabores.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Sabores</span>
+        </div>
+
+    </div>
+
+    <div class="d-none d-sm-block contenedor">
+        <div class="card col-md-4" (click)="goToPresentaciones()">
+            <img src="../../assets/img/presentaciones.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Presentaciones</span>
+        </div>
+        <div class="card col-md-4" (click)="goToSucursales()">
+            <img src="../../assets/img/sucursales.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Sucursales</span>
+        </div>
+        <div class="card col-md-4" (click)="goToMensajes()">
+            <img src="../../assets/img/mensajes.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mensajes</span>
+        </div>
+    </div>
+
+    <div class="d-none d-sm-block contenedor">
+        <div class="card col-md-4" (click)="goToPromociones()">
+            <img src="../../assets/img/presentaciones.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Promociones</span>
+        </div>
+        <div class="card col-md-4" (click)="goToNovedades()">
+            <img src="../../assets/img/sucursales.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Novedades</span>
+        </div>
+        <div class="card col-md-4" (click)="goToArticulosCanjeables()">
+            <img src="../../assets/img/presentaciones.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Artículos Canjeables</span>
+        </div>
+    </div>
+
+    <div class="d-none d-sm-block contenedor">
+        <div class="card col-md-4" (click)="goToUsuariosApp()">
+            <img src="../../assets/img/mensajes.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Usuarios Aplicación</span>
+        </div>
+        <div class="card col-md-4">
+            <!--<img src="../../assets/img/presentaciones.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Articulos Canjeables</span>-->
+        </div>
+        <div class="card col-md-4">
+            <!--<img src="../../assets/img/presentaciones.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Articulos Canjeables</span>-->
+        </div>
+    </div>
+
+    <div class="d-lg-none">
+        <div class="card col-md-12" (click)="goToUsuarios()">
+            <img src="../../assets/img/user.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Usuarios</span>
+        </div>
+        <div class="card col-md-12" (click)="goToProductos()">
+            <img src="../../assets/img/productos.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Productos</span>
+        </div>
+        <div class="card col-md-12" (click)="goToSabores()">
+            <img src="../../assets/img/sabores.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Sabores</span>
+        </div>
+        <div class="card col-md-12" (click)="goToPresentaciones()">
+            <img src="../../assets/img/presentaciones.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Presentaciones</span>
+        </div>
+        <div class="card col-md-12" (click)="goToSucursales()">
+            <img src="../../assets/img/sucursales.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Sucursales</span>
+        </div>
+        <div class="card col-md-12" (click)="goToMensajes()">
+            <img src="../../assets/img/mensajes.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mensajes</span>
+        </div>
+        <div class="card col-md-4" (click)="goToPromociones()">
+            <img src="../../assets/img/presentaciones.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Promociones</span>
+        </div>
+        <div class="card col-md-4" (click)="goToNovedades()">
+            <img src="../../assets/img/sucursales.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Novedades</span>
+        </div>
+        <div class="card col-md-4" (click)="goToUsuariosApp()">
+            <img src="../../assets/img/mensajes.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">App Libereco</span>
+        </div>
+        <div class="card col-md-4" (click)="goToArticulosCanjeables()">
+            <img src="../../assets/img/presentaciones.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Artículos</span>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="!admin">
+    <div class="d-none d-sm-block contenedor">
+        <div class="card col-md-2" (click)="goToMisDatos()">
+            <img src="../../assets/img/sucursales.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mis Datos</span>
+        </div>
+
+        <div class="card col-md-2" (click)="goToMisProductos()">
+            <img src="../../assets/img/productos.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mis Productos</span>
+        </div>
+        <div class="card col-md-2" (click)="goToMisTurnos()">
+            <img src="../../assets/img/sucursales.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mis Turnos</span>
+        </div>
+        <div class="card col-md-2" (click)="goToMisMensajesNuevos()">
+            <img src="../../assets/img/mensajes.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mensajes</span>
+        </div>
+    </div>
+
+    <div class="d-lg-none">
+        <div class="card col-md-4" (click)="goToMisDatos()">
+            <img src="../../assets/img/sucursales.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mis Datos</span>
+        </div>
+
+        <div class="card col-md-4" (click)="goToMisProductos()">
+            <img src="../../assets/img/productos.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mis Productos</span>
+        </div>
+        <div class="card col-md-4" (click)="goToMisTurnos()">
+            <img src="../../assets/img/sucursales.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mis Turnos</span>
+        </div>
+        <div class="card col-md-4" (click)="goToMisMensajesNuevos()">
+            <img src="../../assets/img/mensajes.png " class="imagen">
+            <span style="margin-top: -30px;" class="text">Mensajes</span>
+        </div>
+    </div>
+
+</div>

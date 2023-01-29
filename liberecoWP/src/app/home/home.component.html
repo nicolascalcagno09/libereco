@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="header-repeat"></div>
+    <div class="content">
+        <section id="header" class="header d-none d-sm-block">
+            <div class="header-img-container">
+                <carousel cellsToShow="1" style="height: 480px;" arrows="false" loop="true" autoplay="true"
+                    autoplayInterval="5000" pauseOnHover="true" lightDOM="true">
+                    <div class="carousel-cell" *ngFor="let i of imagesW">
+                        <img [defaultImage]="i.original" [lazyLoad]="i.original" alt="" class="img-header" />
+                        <div class="text-header">
+                            <div class="text">
+                                <span class="tent">Tentaciones</span>
+                                <br /> LIBERECO
+                            </div>
+                            <button mat-raised-button class="button1" (click)="goToSabores()">NUESTROS SABORES</button>
+                        </div>
+                    </div>
+
+                </carousel>
+            </div>
+        </section>
+
+        <section id="header_r" class="header d-lg-none">
+            <div class="header-img-container">
+                <carousel cellsToShow="1" style="height: 480px;" arrows="false" loop="true" autoplay="true"
+                    autoplayInterval="5000" pauseOnHover="true">
+                    <div class="carousel-cell" *ngFor="let i of images">
+                        <!-- <img src="../../assets/img/slider/r2.jpg" alt="" class="img-header" /> -->
+                        <img [defaultImage]="i.original" [lazyLoad]="i.original" alt="" class="img-header" />
+                        <div class="text-header">
+                            <div class="text">
+                                <span class="tent">Tentaciones</span>
+                                <br /> LIBERECO
+                            </div>
+                            <button mat-raised-button class="button1" (click)="goToSabores()">NUESTROS SABORES</button>
+                        </div>
+                    </div>
+                </carousel>
+            </div>
+        </section>
+        <section id="locales" #localesRef>
+            <div class="cblack">NUESTROS LOCALES</div>
+            <div class="row">
+                <div class="col-md-4 cardd" *ngFor="let suc of sucursales">
+                    <app-card-local [sucursal]="suc" routerLink="/sucursal/{{suc.urlamigable}}">
+                    </app-card-local>
+                </div>
+            </div>
+            <div class="locales-button-container d-md-none d-sm-block">
+                <a href="https://www.google.com/maps/d/embed?mid=1oeTPjbqF6XyDkUM9EI44s8-sE4g">
+                    <button mat-button class="locales-button2">
+                        <img src="../../assets/img/place-icon.png " alt=" " height="24px" class="mr-2" />
+                        VER LOCALES
+                    </button>
+                </a>
+
+
+            </div>
+        </section>
+        <section id="franquicias " class="header">
+            <div class="header-img-container ">
+                <img src="../../assets/img/franquicias.jpg" alt=" " class="img-header d-none d-md-block" />
+                <img src="../../assets/img/background-cover.png " alt=" " class="img-franq-2 d-none d-md-block" />
+                <img src="../../assets/img/franquicias.jpg" alt=" " class="img-header2  d-lg-none" />
+                <img src="../../assets/img/background-cover2.png " alt=" " class="img-franq-3 d-md-none d-sm-block" />
+                <div class="text-franq-conteiner ">
+                    <img src="../../assets/img/shop-icon.png " alt=" " class=" " />
+                    <div class="text-franq ">SE PARTE DE NUESTRA RED DE FRANQUCIAS</div>
+                    <button (click)="goToSeParte()" mat-raised-button class="button2 d-none d-md-block">OBTENER MÁS
+                        INFORMACIÓN</button>
+                    <button (click)="goToSeParte()" mat-raised-button class="button2A d-md-none d-sm-block">MÁS
+                        INFORMACIÓN</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="redes">
+            <div class="row redes-container">
+                <div class="col-md-3 seguinos">SEGUINOS</div>
+                <div class="col-md-6 vayamos">Vayamos juntos en esta apasionante aventura de las delicias que endulzan
+                    nuestra vida.</div>
+                <div class="col-md-3 redes-icons">
+                    <a href="https://www.facebook.com/liberecoheladosycafe" target="_blank" mat-button
+                        class="navbar-toggler ">
+                        <img src="../../assets/img/facebook.svg" alt="">
+                    </a>
+                    <a href="https://www.instagram.com/liberecohelados/" target="_blank mat-button"
+                        class="navbar-toggler">
+                        <img src="../../assets/img/instagram.svg" alt="">
+                    </a>
+                    <!--<a href="#" mat-button class="navbar-toggler">
+                        <img src="../../assets/img/icon-tik-2.png" alt="">
+                    </a>-->
+
+                </div>
+            </div>
+
+
+        </section>
+
+        <section id="instafeed "></section>
+
+
+        <app-footer></app-footer>
+    </div>
+    <app-footer-repeat></app-footer-repeat>
+</div>

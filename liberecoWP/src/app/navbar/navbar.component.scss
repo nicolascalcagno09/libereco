@@ -1,0 +1,61 @@
+.toolbar {
+    height: 100px;
+    background: #000;
+    font-family: "Montserrat";
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 70px;
+    text-align: center;
+    color: #fff;
+}
+
+.navbar-nav a {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 70px;
+    color: white;
+    cursor: pointer;
+}
+
+.img-logo {
+    vertical-align: middle;
+}
+
+.img-logo-collapsed {
+    vertical-align: middle;
+    margin: 0 auto;
+}
+
+.menu-expand {
+    background: black;
+    z-index: 100;
+}
+
+.btn1,
+.btn1:hover,
+.btn1:focus {
+    border: none;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none !important;
+    transition: none !important;
+}
+
+.redes a {
+    padding: 0 3px;
+    min-width: 30px;
+}
+
+ul li {
+    margin: 0 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .toolbar {
+        height: 80px;
+    }
+    .img-logo-collapsed {
+        height: 54px;
+        margin: auto;
+    }
+}

@@ -1,0 +1,62 @@
+.card-container {
+    margin-bottom: 18px;
+    cursor: pointer;
+}
+
+.image-container {
+    height: 260px;
+    overflow: hidden;
+}
+
+.image:hover {
+    transition: 0.5s;
+    transform: scale(1.2) rotate(4deg);
+}
+
+.image {
+    object-fit: cover;
+    width: 100%;
+    height: 260px;
+}
+
+.text-container {
+    height: 70px;
+    background: #000;
+    line-height: 18px;
+    text-align: center;
+    color: #fff;
+}
+
+.title {
+    font-weight: 900;
+    font-size: 20px;
+    padding: 16px 0 3px;
+    text-transform: uppercase;
+}
+
+.sub-title {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+// .text p {
+//     margin-top: 16px;
+// }
+@media only screen and (max-width: 600px) {
+    .image-container {
+        height: 220px;
+    }
+    .image {
+        height: 220px;
+    }
+    .text-container {
+        height: 60px;
+    }
+    .title {
+        padding-bottom: 0;
+    }
+    .subtitle {
+        font-size: 10px;
+        line-height: 13px;
+    }
+}

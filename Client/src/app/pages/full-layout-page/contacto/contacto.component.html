@@ -1,0 +1,310 @@
+<section id="basic-datatable" class="mb-3">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Mensajes</div>
+        </div>
+    </div>
+    <div class="row mt-3 d-none d-sm-block">
+
+        <div class="col-sm-12">
+
+            <mat-expansion-panel class="expansion">
+                <mat-expansion-panel-header style="background-color: rgba(255,163,220,1);">
+                    <mat-panel-title>
+                        <span class="preguntas">Nuevos</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <input type="text" style="padding:8px;margin: 15px 0px 15px 15px; width: 30%;border-radius: 17px;
+    border: 1px solid gray;" placeholder="Buscá por email, ciudad, etc..." (keyup)="updateFilterNuevos($event)" />
+                <ngx-datatable class="bootstrap" (sort)="onSort($event)" [loadingIndicator]="loadingIndicator" [rows]="contactosNuevos" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [reorderable]="reorderable" [limit]="15" style="font-size:12px">
+                    <ngx-datatable-column name=" Fecha" prop="createdAt" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.createdAt | date: 'dd-MM-yyyy'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Mail" prop="correoElectronico" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.correoElectronico}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Motivo de Consulta" prop="motivoConsulta" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.motivoConsulta}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Sucursal" prop="sucursal.localidad" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.sucursal?.localidad}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Acciones">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            <i style="margin-right: 10px;" class="fas fa-envelope-open ver" data-toggle="tooltip" data-placement="right" title="Marcar como leido" (click)="marcarLeido(row)"></i>
+                            <i style="margin-right: 10px;color:orange" class="fas fa-star ver" data-toggle="tooltip" data-placement="right" title="Destacar" (click)="marcarDestacado(row)"></i>
+                            <i style="margin-right: 10px;" class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                            <i style="margin-right: 10px;" class="far fa-trash-alt ver" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarContacto(row)'></i>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+                <angular2csv id="nuevos_suc" [data]="contactosNuevosAuxConsultaGeneral" filename="consultasGenerales" [options]="optionsConsultaGeneral">
+                </angular2csv>
+                <angular2csv id="nuevos_fran" [data]="contactosNuevosAuxCalificacionFranquicias" filename="calificaciones" [options]="optionsFranquicias"></angular2csv>
+                <angular2csv id="nuevos_info" [data]="contactosNuevosAuxInformacionSobreFranquicias" filename="informacionFranquicias" [options]="optionsInformacionSobreFranquicias"></angular2csv>
+
+
+
+            </mat-expansion-panel>
+            <mat-expansion-panel class="expansion">
+                <mat-expansion-panel-header style="background-color: rgba(255,216,0,1);">
+                    <mat-panel-title>
+                        <span class="preguntas">Destacados</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <input type="text" style="padding:8px;margin: 15px 0px 15px 15px; width: 30%;border-radius: 17px;
+    border: 1px solid gray;" placeholder="Buscá por email, ciudad, etc..." (keyup)="updateFilterDestacados($event)" />
+                <ngx-datatable class="bootstrap" (sort)="onSort($event)" [loadingIndicator]="loadingIndicator" [rows]="contactosDestacados" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [reorderable]="reorderable" [limit]="15" style="font-size:12px">
+                    <ngx-datatable-column name="Fecha" prop="createdAt" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.createdAt | date: 'dd-MM-yyyy'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Mail" prop="correoElectronico" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.correoElectronico}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Motivo de Consulta" prop="motivoConsulta" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.motivoConsulta}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Sucursal" prop="sucursal.localidad" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.sucursal?.localidad}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Leido" prop="leida" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.leida == true ? 'Si':'No'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Acciones">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            <i style="margin-right: 10px;" class="fas fa-envelope-open ver" data-toggle="tooltip" data-placement="right" title="Marcar como leido" (click)="marcarLeido(row)"></i>
+                            <i style="margin-right: 10px;color:orange" class="far fa-star ver" data-toggle="tooltip" data-placement="right" title="No Destacar" (click)="desmarcarDestacado(row)"></i>
+                            <i style="margin-right: 10px;" class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                            <i style="margin-right: 10px;" class="far fa-trash-alt ver" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarContacto(row)'></i>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+                <angular2csv id="dest_suc" [data]="contactosDestacadosAuxConsultaGeneral" filename="consultasGenerales" [options]="optionsConsultaGeneral">
+                </angular2csv>
+                <angular2csv id="dest_fran" [data]="contactosDestacadosAuxCalificacionFranquicias" filename="calificaciones" [options]="optionsFranquicias"></angular2csv>
+                <angular2csv id="dest_info" [data]="contactosDestacadosAuxInformacionSobreFranquicias" filename="informacionFranquicias" [options]="optionsInformacionSobreFranquicias"></angular2csv>
+            </mat-expansion-panel>
+            <mat-expansion-panel class="expansion">
+                <mat-expansion-panel-header style="background-color: #83FF33;">
+                    <mat-panel-title>
+                        <span class="preguntas">Leidos</span>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <input type="text" style="padding:8px;margin: 15px 0px 15px 15px; width: 30%;border-radius: 17px;
+    border: 1px solid gray;" placeholder="Buscá por email, ciudad, etc..." (keyup)="updateFilterLeidos($event)" />
+                <ngx-datatable class="bootstrap" (sort)="onSort($event)" [loadingIndicator]="loadingIndicator" [rows]="contactosLeidos" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [reorderable]="reorderable" [limit]="15" style="font-size:12px">
+                    <ngx-datatable-column name="Fecha" prop="createdAt" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.createdAt | date: 'dd-MM-yyyy'}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Mail" prop="correoElectronico" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.correoElectronico}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Motivo de Consulta" prop="motivoConsulta" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.motivoConsulta}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Sucursal" prop="sucursal.localidad" sort="true">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            {{row.sucursal?.localidad}}
+                        </ng-template>
+                    </ngx-datatable-column>
+                    <ngx-datatable-column name="Acciones">
+                        <ng-template let-row="row" ngx-datatable-cell-template>
+                            <i style="margin-right: 10px;color:orange" class="fas fa-star ver" data-toggle="tooltip" data-placement="right" title="Destacar" (click)="marcarDestacado(row)"></i>
+                            <i style="margin-right: 10px;" class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                            <i style="margin-right: 10px;" class="fas fa-trash-alt ver" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarContacto(row)'></i>
+                        </ng-template>
+                    </ngx-datatable-column>
+                </ngx-datatable>
+                <angular2csv id="l_suc" [data]="contactosLeidosAuxConsultaGeneral" filename="consultasGenerales" [options]="optionsConsultaGeneral">
+                </angular2csv>
+                <angular2csv id="l_fran" [data]="contactosLeidosAuxCalificacionFranquicias" filename="calificaciones" [options]="optionsFranquicias"></angular2csv>
+                <angular2csv id="l_info" [data]="contactosLeidosAuxInformacionSobreFranquicias" filename="informacionFranquicias" [options]="optionsInformacionSobreFranquicias"></angular2csv>
+            </mat-expansion-panel>
+        </div>
+    </div>
+</section>
+
+<mat-expansion-panel class="expansion d-lg-none">
+    <mat-expansion-panel-header style="background-color: rgba(255,163,220,1);">
+        <mat-panel-title>
+            <span class="preguntas">Nuevos</span>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="card d-lg-none" *ngFor="let row of contactosNuevos">
+        <div class="card-body">
+            <h5 class="card-title"><b>Fecha:</b> {{row.createdAt | date: 'dd-MM-yyyy'}}</h5>
+            <h5 class="card-title"><b>Mail</b>: {{row.correoElectronico}}</h5>
+            <h5 class="card-title"><b>Motivo</b>: {{row.motivoConsulta}}</h5>
+            <h5 class="card-title"><b>Localidad</b>: {{row.sucursal?.localidad}}</h5>
+            <h5 class="card-title"><b>Leido</b>: {{row.leida == true ? 'Si':'No'}}</h5>
+            <hr>
+            <div class="card-text">
+                <i style="margin-right: 10px;" class="fas fa-envelope-open ver" data-toggle="tooltip" data-placement="right" title="Marcar como leido" (click)="marcarLeido(row)"></i>
+                <i style="margin-right: 10px;color:orange" class="fas fa-star ver" data-toggle="tooltip" data-placement="right" title="Destacar" (click)="marcarDestacado(row)"></i>
+                <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                <i class="far fa-trash-alt eliminar ml-2" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarContacto(row)'></i>
+            </div>
+        </div>
+    </div>
+</mat-expansion-panel>
+<mat-expansion-panel class="expansion d-lg-none">
+    <mat-expansion-panel-header style="background-color: rgba(255,216,0,1);">
+        <mat-panel-title>
+            <span class="preguntas">Destacados</span>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="card d-lg-none" *ngFor="let row of contactosDestacados">
+        <div class="card-body">
+            <h5 class="card-title"><b>Fecha:</b> {{row.createdAt | date: 'dd-MM-yyyy'}}</h5>
+            <h5 class="card-title"><b>Mail</b>: {{row.correoElectronico}}</h5>
+            <h5 class="card-title"><b>Motivo</b>: {{row.motivoConsulta}}</h5>
+            <h5 class="card-title"><b>Localidad</b>: {{row.sucursal?.localidad}}</h5>
+            <h5 class="card-title"><b>Leido</b>: {{row.leida == true ? 'Si':'No'}}</h5>
+            <hr>
+            <div class="card-text">
+                <i style="margin-right: 10px;" class="fas fa-envelope-open ver" data-toggle="tooltip" data-placement="right" title="Marcar como leido" (click)="marcarLeido(row)"></i>
+                <i style="margin-right: 10px;color:orange" class="far fa-star ver" data-toggle="tooltip" data-placement="right" title="No Destacar" (click)="desmarcarDestacado(row)"></i>
+                <i style="margin-right: 10px;" class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                <i style="margin-right: 10px;" class="far fa-trash-alt ver" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarContacto(row)'></i>
+            </div>
+        </div>
+    </div>
+</mat-expansion-panel>
+<mat-expansion-panel class="expansion d-lg-none">
+    <mat-expansion-panel-header style="background-color: #83FF33;">
+        <mat-panel-title>
+            <span class="preguntas">Leidos</span>
+        </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="card d-lg-none" *ngFor="let row of contactosLeidos">
+        <div class="card-body">
+            <h5 class="card-title"><b>Fecha:</b> {{row.createdAt | date: 'dd-MM-yyyy'}}</h5>
+            <h5 class="card-title"><b>Mail</b>: {{row.correoElectronico}}</h5>
+            <h5 class="card-title"><b>Motivo</b>: {{row.motivoConsulta}}</h5>
+            <h5 class="card-title"><b>Localidad</b>: {{row.sucursal?.localidad}}</h5>
+            <h5 class="card-title"><b>Leido</b>: {{row.leida == true ? 'Si':'No'}}</h5>
+            <hr>
+            <div class="card-text">
+                <i style="margin-right: 10px;color:orange" class="fas fa-star ver" data-toggle="tooltip" data-placement="right" title="Destacar" (click)="marcarDestacado(row)"></i>
+                <i style="margin-right: 10px;" class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                <i style="margin-right: 10px;" class="fas fa-trash-alt ver" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarContacto(row)'></i>
+            </div>
+        </div>
+    </div>
+</mat-expansion-panel>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header" style="display:inline;padding:20px;-webkit-box-shadow: 0px -5px 110px 3px rgba(189,189,189,1);
+    -moz-box-shadow: 0px -5px 110px 3px rgba(189,189,189,1);
+    box-shadow: 0px -5px 110px 3px rgba(189,189,189,1);">
+        <h4 class="modal-title"><b>{{contactoSelect?.motivoConsulta}}: <span
+                    *ngIf="calificacionFranquicias">{{contactoSelect?.sucursal?.localidad}}</span></b></h4>
+        <div style="float: right;"><i style="margin-right: 10px;color:orange" class="{{contactoSelect?.destacado ? 'fas fa-star ver':'far fa-star ver'}}" data-toggle="tooltip"></i>
+            <button type="button" class="close" aria-label="Cerrar" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div>
+            <span class="sub-tittle">De: </span>{{contactoSelect?.apellido}} {{contactoSelect?.nombre}} <br />
+            <span class="sub-tittle">Mail: </span><span style="color:red"><u>{{contactoSelect?.correoElectronico}}</u></span> <br />
+            <span class="sub-tittle">Teléfono: </span>{{contactoSelect?.telefono}}
+            <div style="float: right;color: #3e4046;
+    opacity: 0.619;">{{contactoSelect?.createdAt | date: 'fullDate'}}
+            </div>
+        </div>
+    </div>
+    <div class="modal-body" style="margin-left:20px">
+
+
+        <div *ngIf="consultaGeneral" style="margin-bottom:15px">
+            <span class="sub-tittle">Consulta </span><br />{{contactoSelect?.consulta}} <br />
+        </div>
+        <div *ngIf="calificacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">¿Porque elegis Libereco? </span><br />{{contactoSelect?.porqueElegisLibereco}}
+            <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">Atencion en local </span><br />{{contactoSelect?.atencionEnLocal}} puntos <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">Limpieza en local </span><br />{{contactoSelect?.limpiezaEnLocal}} puntos<br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">¿Cómo te sentiste en el local?
+            </span><br />{{contactoSelect?.comoTeSentisteEnElLocal}} puntos <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">¿Alguna sugerencia, reclamo o algo que nos quieras decir?
+            </span><br />{{contactoSelect?.sugerencias}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">Tenes algún sabor o producto preferido?
+            </span><br />{{contactoSelect?.productoPreferido}}<br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">¿Qué sabor o productos te gustaría que tengamos?
+            </span><br />{{contactoSelect?.saboresParaAgregar}} <br />
+        </div>
+
+        <div *ngIf="calificacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">En caso de ser necesario: ¿Te podemos contactar desde nuestro equipo de atención al
+                cliente ? </span><br />{{contactoSelect?.tePodemosContactar == true ? 'Si':'No'}} <br />
+        </div>
+
+        <div *ngIf="informacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">Localidad de interés </span><br />{{contactoSelect?.localidadDeInteres}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">Localidad donde reside </span><br />{{contactoSelect?.localidadDondeReside}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">¿Tiene experiencia manejando comercios?
+            </span><br />{{contactoSelect?.tieneExperienciaManejoComercios == true ? 'Si':'No'}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">¿Tiene experiencia manejando personal?
+            </span><br />{{contactoSelect?.tieneExperienciaManejoPersonal == true ? 'Si':'No'}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">Dedicacion actual: </span><br />{{contactoSelect?.dedicacionActual}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">Monto disponible de inversión:
+            </span><br />{{contactoSelect?.montoDisponibleParaInversion}} <br />
+        </div>
+        <div *ngIf="informacionFranquicias" style="margin-bottom:15px">
+            <span class="sub-tittle">¿Porqué debería ser el priopietario?
+            </span><br />{{contactoSelect?.porqueDeberiaSerElPropietario}} <br />
+        </div>
+    </div>
+</ng-template>

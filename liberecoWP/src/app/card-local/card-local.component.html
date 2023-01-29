@@ -1,0 +1,15 @@
+<div class="card-container">
+    <div class="image-container">
+        <!-- <img src="{{sucursal.img}}" alt=""> -->
+        <img [src]="sucursal.imagen_responsive_path" alt="" class="image">
+
+    </div>
+    <div class="text-container">
+        <div class="title">
+            <a style="color:white" routerLink="/sucursal/{{sucursal.urlamigable}}"> {{sucursal.localidad}}</a>
+        </div>
+        <div class="sub-title">
+            HELADERIA
+        </div>
+    </div>
+</div>

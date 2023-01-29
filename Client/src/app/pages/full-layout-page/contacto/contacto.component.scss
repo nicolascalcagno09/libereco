@@ -1,0 +1,166 @@
+.sub-tittle {
+    color: grey;
+    opacity: 0.619;
+}
+
+/deep/ #nuevos_suc>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #nuevos_suc>button::after {
+    content: 'Consultas Generales';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}
+
+/deep/ #nuevos_fran>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #nuevos_fran>button::after {
+    content: 'Calificaciones';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}
+
+/deep/ #nuevos_info>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #nuevos_info>button::after {
+    content: 'Información de Franquicias';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}
+
+/deep/ #dest_suc>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #dest_suc>button::after {
+    content: 'Consultas Generales';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}
+
+/deep/ #dest_fran>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #dest_fran>button::after {
+    content: 'Calificaciones';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}
+
+/deep/ #dest_info>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #dest_info>button::after {
+    content: 'Información de Franquicias';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}
+
+/deep/ #l_suc>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #l_suc>button::after {
+    content: 'Consultas Generales';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}
+
+/deep/ #l_fran>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #l_fran>button::after {
+    content: 'Calificaciones';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}
+
+/deep/ #l_info>button {
+    color: transparent;
+    /* hides 'download' label */
+    line-height: 0;
+    /* Collapse the original line */
+    height: 35px;
+}
+
+/deep/ #l_info>button::after {
+    content: 'Información de Franquicias';
+    /* new button label */
+    color: #333333;
+    /* color so we can see it */
+    display: block;
+    line-height: initial;
+    /* New content takes up original line height */
+}

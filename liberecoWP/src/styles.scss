@@ -1,0 +1,44 @@
+    /* You can add global styles to this file, and also import other style files */
+    
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+    
+    body {
+        margin: 0;
+    }
+    
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', sans-serif;
+        }
+    
+    @import '~@angular/material/theming';
+    // Define a custom typography config that overrides the font-family as well as the
+    // `headlines` and `body-1` levels.
+    $custom-typography: mat-typography-config( $font-family: 'Montserrat, monospace', $headline: mat-typography-level(32px, 48px, 700), $body-1: mat-typography-level(16px, 24px, 500));
+    /* Importing Bootstrap SCSS file. */
+    
+    @import '~bootstrap/scss/bootstrap';
+    .row {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    @import "~@ng-select/ng-select/themes/material.theme.css";
+    button:focus {
+        text-decoration: none;
+        outline: none;
+    }
+    
+    button:hover {
+        box-shadow: 0 4px 16px #b3b3b3 !important;
+        transition: all 0.2s ease;
+    }

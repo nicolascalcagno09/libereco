@@ -1,0 +1,105 @@
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div *ngIf="!isEdit" class="content-header" style="margin-top: -17px;">Nuevo Usuario</div>
+            <div *ngIf="isEdit" class="content-header" style="margin-top: -17px;">Editar Usuario</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form" [formGroup]="usuarioForm">
+                            <div class="form-body mt-3">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nombre">Nombre</label>
+                                            <input type="text" id="nombre" class="form-control border-primary" formControlName="nombre">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.nombre">
+                                                <div class="error-message" *ngIf="usuarioForm.get('nombre').hasError(validation.type) && (usuarioForm.get('nombre').dirty || usuarioForm.get('nombre').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="email">Email</label>
+                                            <input type="text" id="email" class="form-control border-primary" formControlName="email">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.email">
+                                                <div class="error-message" *ngIf="usuarioForm.get('email').hasError(validation.type) && (usuarioForm.get('email').dirty || usuarioForm.get('email').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="text" id="password" class="form-control border-primary" formControlName="password">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.password">
+                                                <div class="error-message" *ngIf="usuarioForm.get('password').hasError(validation.type) && (usuarioForm.get('password').dirty || usuarioForm.get('password').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="projectinput6">Perfil</label>
+                                            <ng-select id="projectinput6" [items]="perfiles" bindLabel="nombre" bindValue="id" [addTag]="addCustomUser" [multiple]="false" placeholder="Seleccione un perfil de usuario" formControlName="perfil" [searchable]="false">
+                                            </ng-select>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.perfil">
+                                                <div class="error-message" *ngIf="usuarioForm.get('perfil').hasError(validation.type) && (usuarioForm.get('perfil').dirty || usuarioForm.get('perfil').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="sucursal">Sucursal</label>
+                                            <ng-select id="sucursal" [items]="sucursales" bindLabel="direccion" bindValue="id" [addTag]="addCustomUser" [multiple]="false" placeholder="Seleccione una sucursal" formControlName="sucursal" [searchable]="false">
+                                            </ng-select>
+                                        </div>
+                                        <!-- <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.sucursal">
+                                                <div class="error-message" *ngIf="usuarioForm.get('sucursal').hasError(validation.type) && (usuarioForm.get('sucursal').dirty || usuarioForm.get('sucursal').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div> -->
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-actions center">
+                                <button type="button" *ngIf="!isEdit" class="btn btn-raised btn-primary shadow-z-2" (click)="nuevoUsuario()" [disabled]="!usuarioForm.valid">
+                                    <i class="fa fa-check-circle mr-2"></i> Crear
+                                </button>
+                                <button *ngIf="isEdit" type="button" class="btn btn-raised btn-warning shadow-z-2" (click)="actualizarUsuario()">
+                                    <i class="fa fa-check-circle mr-2"></i> Actualizar
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

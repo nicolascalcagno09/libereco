@@ -1,0 +1,23 @@
+<mat-dialog-content class="mat-typography">
+    <div *ngFor="let ts of tipoSabores" style="margin-top: 50px;">
+        <div *ngIf="ts.sabores.length > 0" style="text-align: center;">
+            <div class="text-title-prod">
+                {{ts.nombre}}
+            </div>
+            <img src="../../assets/img/bigote.png" alt=" " class="bigote" width="135px" height="15px" />
+        </div>
+        <div class="row" style="display: flex;justify-content: space-around">
+            <div class="content-prod col-md-6 col-lg-3" *ngFor="let sab of ts.sabores">
+                <div class="circle-base">
+                    <img [src]="sab.imagen_path" class="img-prod" />
+                    <div class="text-prod">
+                        <span>{{sab.titulo}}</span>
+                    </div>
+                    <div class="text-desc-prod">
+                        <span>{{sab.descripcion}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

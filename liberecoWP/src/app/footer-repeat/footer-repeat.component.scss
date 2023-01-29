@@ -1,0 +1,26 @@
+.footer-repeat {
+    background-image: url('../../assets/img/repeat.png');
+    background-repeat: repeat-x;
+    height: 39px;
+    margin-left: -20px;
+    width: 100%visible;
+}
+
+.ultima {
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    color: white;
+    font-family: "Montserrat";
+    text-align: center;
+}
+
+.ultima:hover {
+    color: rgb(250, 35, 92);
+    cursor: pointer;
+}
+
+.sub-title{
+    padding:18px;
+}

@@ -1,0 +1,420 @@
+.container {
+  display: contents;
+}
+
+.header-repeat {
+  background-image: url("../../assets/img/repeat.png");
+  background-repeat: repeat-x;
+  height: 158px;
+  margin-left: -20px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.content {
+  display: block;
+  text-align: center;
+  // width: 61%;
+  max-width: 1181px;
+  margin: 32px auto 0 auto;
+}
+
+.header {
+  z-index: 100;
+}
+
+.header-img-container {
+  position: relative;
+  z-index: 1;
+}
+
+.img-header {
+  width: 100%;
+  object-fit: cover !important;
+  height: 487px;
+}
+
+.img-header2 {
+  width: 100%;
+  object-fit: cover;
+  height: 651px;
+}
+
+.text-header {
+  position: absolute;
+  top: 144px;
+  left: 0;
+  right: 0;
+}
+
+.text {
+  font-family: "Montserrat";
+  font-weight: normal;
+  font-size: 90px;
+  letter-spacing: -0.02em;
+  line-height: 80px;
+  text-align: center;
+  color: #fff;
+  font-weight: 900;
+}
+
+.tent {
+  font-family: "Dancing Script", cursive;
+  font-weight: 400;
+}
+
+.button1 {
+  width: 377px;
+  height: 54px;
+  border-radius: 27px;
+  background: #fff;
+  font-weight: 900;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 80px;
+  color: #000;
+}
+
+.cblack {
+  margin: 56px 0 46px 0;
+  font-family: "Montserrat";
+  font-weight: 900;
+  font-size: 90px;
+  letter-spacing: -0.02em;
+  line-height: 90px;
+  text-align: center;
+  color: #000;
+}
+
+.locales-button-container {
+  margin-top: 70px;
+  margin-bottom: 121px;
+}
+
+.locales-button {
+  color: white;
+  width: 580px;
+  height: 70px;
+  border-radius: 35px;
+  background: #000;
+  font-family: "Montserrat";
+  font-weight: 900;
+  white-space: nowrap;
+  font-size: 24px;
+  text-align: center;
+  outline: none;
+}
+
+.locales-button2 {
+  width: 232px;
+  height: 52px;
+  font-weight: 900;
+  font-size: 17px;
+  color: white;
+  border-radius: 35px;
+  background: #000;
+  font-family: "Montserrat";
+  text-align: center;
+  outline: none;
+}
+
+.img-franq-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 487px;
+  width: 100%;
+}
+
+.img-franq-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  width: 100%;
+}
+
+.text-franq-conteiner {
+  position: absolute;
+  top: 110px;
+  left: 0;
+  right: 0;
+}
+
+.text-franq {
+  width: 730px;
+  font-weight: 900;
+  font-size: 50px;
+  letter-spacing: -0.02em;
+  line-height: 45px;
+  text-align: center;
+  color: #fff;
+  margin: 19px auto;
+}
+
+.button2 {
+  width: 380px;
+  height: 54px;
+  border-radius: 27px;
+  background: #ff173b;
+  font-weight: 900;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  margin: 44px auto 0 auto;
+  border: none;
+}
+
+.button2A {
+  width: 251px;
+  height: 54px;
+  background: #ff173b;
+  border-radius: 27px;
+  font-weight: 900;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  border: none;
+}
+
+#franquicias {
+  margin-bottom: 120px;
+}
+
+#contact {
+  text-align: center;
+}
+
+.texto-contact {
+  width: 648px;
+  font-weight: 900;
+  font-size: 50px;
+  letter-spacing: -0.02em;
+  line-height: 45px;
+  text-align: center;
+  color: #000;
+  margin: 120px auto 28px auto;
+  text-transform: uppercase;
+}
+
+.bigote {
+  margin-bottom: 46px;
+}
+
+.form {
+  max-width: 980px;
+  margin: 0 auto 33px auto;
+}
+
+.form-1 {
+  display: grid;
+}
+
+.form input {
+  width: 100%;
+  margin-bottom: 15px;
+  height: 47px;
+  border-radius: 5px;
+  border: 1px solid #acacac;
+  padding: 15px 19px 14px 19px;
+}
+
+.button3 {
+  width: 384px;
+  height: 54px;
+  border-radius: 27px;
+  background: #000;
+  font-weight: 900;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+  margin: 0 auto;
+}
+
+.button3A {
+  width: 150px;
+  height: 54px;
+  border-radius: 27px;
+  background: #000;
+  font-weight: 900;
+  font-size: 16px;
+  text-align: center;
+  color: #fff;
+}
+
+.form-mensaje {
+  width: 100%;
+  height: 172px;
+  border-radius: 5px;
+  border: 1px solid #acacac;
+  padding: 15px 19px 14px 19px;
+}
+
+.redes {
+  padding: 0 15px;
+  margin-top: 32px;
+}
+
+.insta-img-container {
+  padding: 0;
+}
+
+.insta-img {
+  height: 197px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.redes-container {
+  background: black;
+  color: white;
+  height: 195px;
+  text-align: center;
+}
+
+.seguinos {
+  font-family: Montserrat;
+  font-weight: 900;
+  font-size: 40px;
+  letter-spacing: -0.02em;
+  line-height: 47px;
+  text-align: right;
+  color: #fff;
+  height: fit-content;
+  margin: auto;
+  padding-right: 0px;
+}
+
+.vayamos {
+  font-family: Montserrat;
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: left;
+  color: #fff;
+  height: fit-content;
+  margin: auto;
+  text-transform: uppercase;
+  max-width: 40%;
+  margin-left: 80px;
+}
+
+.redes-icons {
+  height: fit-content;
+  margin: auto;
+}
+
+.redes-icons img {
+  height: 40px;
+}
+
+.carousel-arrow .carousel-arrow-prev {
+  display: none !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .carousel-cell{
+    height: 360px !important;
+    top: 60px;
+  }
+  .content {
+    margin-top: 0;
+  }
+  .text {
+    font-size: 52px;
+    line-height: 48px;
+  }
+  .text-header {
+    top: 55px;
+  }
+  .button1 {
+    width: 150px;
+    height: 38px;
+    border-radius: 27px;
+    background: #fff;
+    font-weight: 800;
+    font-size: 9px;
+    text-align: center;
+    color: #000;
+  }
+  .img-header {
+    height: 437px;
+  }
+  .cblack {
+    font-size: 50px;
+    line-height: 45px;
+  }
+  .cardd {
+    margin: 0px 28px;
+    border: none;
+    cursor: pointer;
+  }
+  .cardd:hover {
+    cursor: pointer;
+  }
+  .text-franq {
+    width: 90%;
+    font-family: "Montserrat";
+    line-height: 26px;
+    font-weight: 900;
+    font-size: 20px;
+    color: white;
+    letter-spacing: -0.2px;
+  }
+  .texto-contact {
+    width: 90%;
+    font-size: 40px;
+    line-height: 45px;
+  }
+  .bigote {
+    transform: scale(0.7);
+  }
+  .form {
+    padding: 0 30px;
+  }
+  .redes-container {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 35px 0;
+    height: auto;
+  }
+  .seguinos {
+    font-family: Montserrat;
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: -0.02em;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+    height: fit-content;
+    margin: auto auto 3px auto;
+  }
+  .vayamos {
+    font-family: Montserrat;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: -0.02em;
+    line-height: 16px;
+    text-align: center;
+    color: #fff;
+    padding: 0 50px;
+    max-width: 100%;
+    margin: auto;
+    text-transform: none;
+  }
+  .redes-icons {
+    margin-top: 35px;
+  }
+  .img-header2 {
+    width: 100%;
+    object-fit: cover;
+    height: 260px;
+  }
+  .text-franq-conteiner {
+    top: 30px;
+  }
+}

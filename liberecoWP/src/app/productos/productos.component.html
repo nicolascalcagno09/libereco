@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="header-repeat"></div>
+    <div class="content">
+        <section class="main-section">
+            <div class="text-header texto">
+                <span>Disfrutá cada <br> momento</span>
+            </div>
+            <div *ngFor="let pro of productos">
+                <div>
+                    <div class="text-title-prod">
+                        {{pro.nombre}}
+                    </div>
+                    <div class="prod-descripcion">
+                        {{pro.descripcion}}
+                    </div>
+                    <img src="../../assets/img/bigote.png" alt=" " class="bigote" width="135px" height="15px" />
+                </div>
+                <div class="row" style="display: flex;justify-content: space-around">
+                    <div class="content-prod col-md-6 col-lg-3" *ngFor="let pre of pro.presentaciones" style="max-width: 50%">
+                        <div class="circle-base">
+                            <img [src]="pre.imagen_path" class="img-prod" />
+                            <div class="text-prod">
+                                <span>{{pre.titulo}}</span>
+                            </div>
+                            <div class="text-desc-prod">
+                                <span>{{pre.descripcion}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top: 75px;">
+            <div class="d-none d-md-block" style="margin-top: 35px;">
+                <div class="header-button">
+                    Ya sabemos… Te tentaste
+                </div>
+                <button mat-raised-button class="locales-button" (click)="goToHome()">
+                    <img src="../../assets/img/place-icon.png" alt="" height="33px" />
+                    Ver locales
+                </button>
+            </div>
+            <div class="locales-button-container d-md-none d-sm-block">
+                <div class="header-button">
+                    <span>Ya sabemos...<br>Te tentaste</span>
+                </div>
+                <button mat-raised-button class="locales-button2" (click)="goToHome()">
+                    <img src="../../assets/img/place-icon.png " alt=" " height="24px" class="mr-2" />
+                    VER LOCALES
+                </button>
+            </div>
+        </section>
+
+        <app-footer></app-footer>
+    </div>
+    <app-footer-repeat></app-footer-repeat>
+</div>

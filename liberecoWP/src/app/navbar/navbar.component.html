@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg toolbar">
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <button class="navbar-toggler btn1" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+        <!-- <span class="navbar-toggler-icon"></span> -->
+        <img src="../../assets/img/icon1.png" alt="">
+
+    </button>
+
+    <div style="text-align: center;">
+        <img src="../../assets/img/logo-principal.svg" alt="logo" class="navbar-toggler img-logo-collapsed" (click)="goToHome()">
+    </div>
+
+    <div class="redes">
+        <a href="https://www.facebook.com/liberecoheladosycafe" target="_blank" mat-button class="navbar-toggler ">
+            <img src="../../assets/img/facebook.svg" alt="">
+        </a>
+        <a href="https://www.instagram.com/liberecohelados/" target="_blank" mat-button class="navbar-toggler ">
+            <img src="../../assets/img/instagram.svg " alt=" ">
+        </a>
+        <a href="https://www.tiktok.com/@liberecohelados " mat-button target="_blank" class="navbar-toggler">
+            <img src="../../assets/img/tik-tok.png " alt="" style="height: 25.5px;width: 25.5px;">
+        </a>
+    </div>
+
+
+    <div class="collapse navbar-collapse menu-expand " id="navbarTogglerDemo02 " [ngbCollapse]="isCollapsed ">
+        <ul class="navbar-nav mr-auto ml-auto mt-2 mt-lg-0 ">
+            <li class="nav-item " (click)="goToProductos() ">
+                <a mat-button routerLink="/productos ">PRODUCTOS</a>
+            </li>
+            <li class="nav-item " (click)="goToSabores() ">
+                <a mat-button routerLink="/sabores ">SABORES</a>
+            </li>
+            <li class="nav-item " (click)="goToFranquicias() ">
+                <a mat-button routerLink="/franquicias ">FRANQUICIAS</a>
+            </li>
+            <li class="nav-item d-none d-lg-block " (click)="goToHome() ">
+                <a mat-button routerLink="/home ">
+                    <img src="../../assets/img/logo-principal.svg " alt="logo " class="img-logo ">
+                </a>
+            </li>
+            <li class="nav-item " (click)="goToSucursales() ">
+                <a mat-button routerLink="/sucursales ">LOCALES</a>
+            </li>
+            <li class="nav-item " (click)="goToContacto() ">
+                <a mat-button routerLink="/contacto ">CONTACTANOS</a>
+            </li>
+            <li class="nav-item ">
+                <a href="https://liberecoapp.com/" mat-button target="_blank">APP</a>
+            </li>
+            <li class="redes ml-2 d-none d-lg-block ">
+                <a href="https://www.facebook.com/liberecoheladosycafe " target="_blank " mat-button>
+                    <img src="../../assets/img/facebook.svg " alt=" ">
+                </a>
+                <a href="https://www.instagram.com/liberecohelados/ " target="_blank " mat-button>
+                    <img src="../../assets/img/instagram.svg " alt=" ">
+                </a>
+                <a href="https://www.tiktok.com/@liberecohelados " target="_blank " mat-button>
+                    <img src="../../assets/img/tik-tok.png " alt=" " style="height: 25.5px;width: 25.5px;">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

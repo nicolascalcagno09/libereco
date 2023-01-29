@@ -1,0 +1,138 @@
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div *ngIf="!modeEdit" class="content-header" style="margin-top: -17px;">Nueva Novedad</div>
+            <div *ngIf="modeEdit" class="content-header" style="margin-top: -17px;">Editar Novedad</div>
+        </div>
+    </div>
+
+    <div class="row text-left">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form" [formGroup]="novedadForm">
+                            <div class="form-body mt-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="userinput2">Titulo</label>
+                                            <textarea rows="5" type="text" id="userinput2" class="form-control border-primary" formControlName="titulo"></textarea>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.titulo">
+                                                <div class="error-message" *ngIf="novedadForm.get('titulo').hasError(validation.type) && (novedadForm.get('titulo').dirty || novedadForm.get('titulo').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="userinput2">Sub Titulo</label>
+                                            <textarea rows="5" type="text" id="userinput2" class="form-control border-primary" formControlName="subtitulo"></textarea>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.subtitulo">
+                                                <div class="error-message" *ngIf="novedadForm.get('subtitulo').hasError(validation.type) && (novedadForm.get('subtitulo').dirty || novedadForm.get('subtitulo').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="userinput2">Descripción</label>
+                                            <textarea rows="5" type="text" id="userinput2" class="form-control border-primary" formControlName="descripcion"></textarea>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.descripcion">
+                                                <div class="error-message" *ngIf="novedadForm.get('descripcion').hasError(validation.type) && (novedadForm.get('descripcion').dirty || novedadForm.get('descripcion').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="userinput2">Fecha y hora desde</label><br>
+                                            <p-calendar dateFormat="dd/mm/yy" formControlName="desde" [showTime]="true" inputId="userinput2" [showIcon]="true"></p-calendar>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.desde">
+                                                <div class="error-message" *ngIf="novedadForm.get('desde').hasError(validation.type) && (novedadForm.get('desde').dirty || novedadForm.get('desde').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="userinput2">Fecha y hora hasta</label><br>
+                                            <p-calendar dateFormat="dd/mm/yy" formControlName="hasta" [showTime]="true" inputId="userinput2" [showIcon]="true"></p-calendar>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.hasta">
+                                                <div class="error-message" *ngIf="novedadForm.get('hasta').hasError(validation.type) && (novedadForm.get('hasta').dirty || novedadForm.get('hasta').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="userinput2">Genérica?</label>
+                                            <input (change)="isGenerica()" [(ngModel)]="generica" type="checkbox" id="userinput2" class="form-control border-primary" formControlName="visibilidad">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3" *ngIf="!generica">
+                                        <div class="form-group">
+                                            <label for="userinput9">Sucursales</label>
+                                            <ng-select id="projectinput7" [items]="sucursales" bindLabel="localidad" bindValue="id" [addTag]="addCustomUser" [multiple]="true" [closeOnSelect]="false" placeholder="Seleccione sucursales" formControlName="sucursales">
+                                            </ng-select>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="userinput9">Imagen</label>
+                                            <input type="file" accept="image/x-png,image/jpeg" class="form-control-file" id="projectinput9" (change)="imagesPreview($event)">
+                                            <img style="max-width: 20%; margin-top: 10px;" class="preview-image" [src]="imageFile.link" *ngIf="imageFile">
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.imagenPath">
+                                                <div class="error-message" *ngIf="novedadForm.get('imagen').hasError(validation.type) && (novedadForm.get('imagen').dirty || novedadForm.get('imagen').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-actions center">
+                                    <button type="button" *ngIf="!modeEdit" class="btn btn-raised btn-primary shadow-z-2" (click)="nuevaNovedad()" [disabled]="!novedadForm.valid">
+                                        <i class="fa fa-check-circle mr-2"></i> Crear
+                                    </button>
+                                    <button *ngIf="modeEdit" type="button" class="btn btn-raised btn-warning shadow-z-2" (click)="actualizarNovedad()">
+                                        <i class="fa fa-check-circle mr-2"></i> Actualizar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

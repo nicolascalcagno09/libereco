@@ -1,0 +1,83 @@
+<section id="basic-datatable" class="mb-3">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Presentaciones</div>
+        </div>
+    </div>
+    <div class="row mt-3 d-none d-sm-block">
+        <div class="col-sm-12">
+            <input type="text" class="filter" placeholder="Buscá por título, descripción ..."
+                (keyup)="updateFilter($event)" />
+            <ngx-datatable class="bootstrap" [columnMode]="'flex'" (sort)="onSort($event)" [loadingIndicator]="loadingIndicator" [rows]="presentaciones" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [reorderable]="reorderable" [limit]="15">
+                <ngx-datatable-column name="Imagen" [width]="70">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <div class="center">
+                            <img [src]="row.imagen_path" alt="imagen" class="img-presentacion">
+                        </div>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Orden" prop="orden" sort="true" [width]="60">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.orden}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Título" prop="titulo" sort="true" [flexGrow]="1" [width]="300">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.titulo}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Descripción" prop="descripcion" sort="true" [width]="300">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.descripcion}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Precio" [width]="60">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.precio}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Producto" prop="producto.nombre" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row?.producto?.nombre}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Activa">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.activo == true ? 'Activa': 'No Activa'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Acciones">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarPresentacion(row)'></i>
+                        <i class="fas fa-play publicar ml-2" data-toggle="tooltip" data-placement="right" title="Publicar" *ngIf="!row.activo" (click)="publicarPresentacion(row,true)"></i>
+                        <i class="fas fa-play publicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Publicar" *ngIf="row.activo"></i>
+                        <i class="fas fa-power-off despublicar ml-2" data-toggle="tooltip" data-placement="right" title="Cancelar publicación" *ngIf="row.activo" (click)="publicarPresentacion(row,false)"></i>
+                        <i class="fas fa-power-off despublicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Cancelar publicación" *ngIf="!row.activo"></i>
+                        <i class="far fa-trash-alt eliminar ml-3" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarPresentacion(row)'></i>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+</section>
+
+<div class="card d-lg-none" *ngFor="let row of presentaciones">
+    <img [src]="row.imagen_path" class="card-img-top" style="height: 100px;width: 100px;text-align: center;margin: auto;" />
+    <div class="card-body">
+        <h5 class="card-title"><b>Orden:</b> {{row.orden}}</h5>
+        <h5 class="card-title"><b>Titulo:</b> {{row.titulo}}</h5>
+        <h5 class="card-title"><b>Descripcion:</b> {{row.descripcion}}</h5>
+        <h5 class="card-title"><b>Precio:</b> {{row.precio}}</h5>
+        <h5 class="card-title"><b>Producto:</b>{{row?.producto?.nombre}}</h5>
+        <h5 class="card-title"><b>Activa:</b> {{row.activo == true ? 'Activo': 'No Activo'}}</h5>
+        <hr>
+        <div class="card-text">
+            <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarPresentacion(row)'></i>
+            <i class="fas fa-play publicar ml-2" data-toggle="tooltip" data-placement="right" title="Publicar" *ngIf="!row.activo" (click)="publicarPresentacion(row,true)"></i>
+            <i class="fas fa-play publicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Publicar" *ngIf="row.activo"></i>
+            <i class="fas fa-power-off despublicar ml-2" data-toggle="tooltip" data-placement="right" title="Cancelar publicación" *ngIf="row.activo" (click)="publicarPresentacion(row,false)"></i>
+            <i class="fas fa-power-off despublicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Cancelar publicación" *ngIf="!row.activo"></i>
+            <i class="far fa-trash-alt eliminar ml-3" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarPresentacion(row)'></i>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<section id="basic-datatable" class="mb-3">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Usuarios</div>
+        </div>
+    </div>
+    <div class="row mt-3 d-none d-sm-block">
+        <div class="col-sm-12">
+            <ngx-datatable class="bootstrap" [loadingIndicator]="loadingIndicator" [rows]="usuarios" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [reorderable]="reorderable" [limit]="10">
+                <ngx-datatable-column name="Nombre">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.nombre}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Email">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.email}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Perfil">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.perfil}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Sucursal">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.sucursal?.direccion}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Acciones">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+                        <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarUsuario(row)'></i>
+                        <i class="far fa-trash-alt eliminar ml-3" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarUsuario(row)'></i>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+</section>
+
+<div class="card d-lg-none" *ngFor="let row of usuarios">
+    <div class="card-body">
+        <h5 class="card-title"><b>Nombre:</b> {{row.nombre}}</h5>
+        <h5 class="card-title"><b>Mail</b>: {{row.email}}</h5>
+        <h5 class="card-title"><b>Perfil:</b>: {{row.perfil}}</h5>
+        <h5 class="card-title"><b>Sucursal</b>: {{row.sucursal?.direccion}}</h5>
+        <hr>
+        <div class="card-text">
+            <i class="far fa-eye ver" data-toggle="tooltip" data-placement="right" title="Ver detalles" (click)="verDetalles(content, row)"></i>
+            <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarUsuario(row)'></i>
+            <i class="far fa-trash-alt eliminar ml-3" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarUsuario(row)'></i>
+        </div>
+    </div>
+</div>
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Detalle del Usuario</h4>
+        <button type="button" class="close" aria-label="Cerrar" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <span class="sub-tittle">Nombre: </span>{{usuarioSelect?.nombre}} <br />
+        <span class="sub-tittle">Email: </span>{{usuarioSelect?.email}} <br />
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-raised" (click)="c('Close click')">Cerrar</button>
+    </div>
+</ng-template>

@@ -1,0 +1,67 @@
+<section id="basic-datatable" class="mb-3">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header">Productos</div>
+        </div>
+    </div>
+    <div class="row mt-3 d-none d-sm-block">
+        <div class="col-sm-12">
+            <ngx-datatable (sort)="onSort($event)" class="bootstrap" [loadingIndicator]="loadingIndicator" [rows]="productos" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [reorderable]="reorderable" [limit]="10">
+                <ngx-datatable-column name="Orden" prop="orden" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.orden}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Nombre" prop="nombre" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.nombre}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Descripción" prop="descripcion" sort="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.descripcion}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Tiene Sabores">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.tiene_sabores ? 'Si':'No'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Activa">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.activo == true ? 'Activa': 'No Activa'}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Acciones">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarProducto(row)'></i>
+                        <i class="fas fa-play publicar ml-2" data-toggle="tooltip" data-placement="right" title="Publicar" *ngIf="!row.activo" (click)="publicarProducto(row,true)"></i>
+                        <i class="fas fa-play publicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Publicar" *ngIf="row.activo"></i>
+                        <i class="fas fa-power-off despublicar ml-2" data-toggle="tooltip" data-placement="right" title="Cancelar publicación" *ngIf="row.activo" (click)="publicarProducto(row,false)"></i>
+                        <i class="fas fa-power-off despublicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Cancelar publicación" *ngIf="!row.activo"></i>
+                        <i class="far fa-trash-alt eliminar ml-3" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarProducto(row)'></i>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
+    </div>
+</section>
+
+<div class="card d-lg-none" *ngFor="let row of productos">
+    <div class="card-body">
+        <h5 class="card-title"><b>Orden:</b> {{row.orden}}</h5>
+        <h5 class="card-title"><b>Nombre</b>: {{row.nombre}}</h5>
+        <h5 class="card-title"><b>Descripcion:</b>: {{row.descripcion}}</h5>
+        <h5 class="card-title"><b>Tiene sabores</b>: {{row.tiene_sabores ? 'Si':'No'}}</h5>
+        <h5 class="card-title"><b>Activa</b>: {{row.actuvi == true ? 'Si':'No'}}</h5>
+        <hr>
+        <div class="card-text">
+            <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarProducto(row)'></i>
+            <i class="fas fa-play publicar ml-2" data-toggle="tooltip" data-placement="right" title="Publicar" *ngIf="!row.activo" (click)="publicarProducto(row,true)"></i>
+            <i class="fas fa-play publicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Publicar" *ngIf="row.activo"></i>
+            <i class="fas fa-power-off despublicar ml-2" data-toggle="tooltip" data-placement="right" title="Cancelar publicación" *ngIf="row.activo" (click)="publicarProducto(row,false)"></i>
+            <i class="fas fa-power-off despublicar-disabled ml-2" data-toggle="tooltip" data-placement="right" title="Cancelar publicación" *ngIf="!row.activo"></i>
+            <i class="far fa-trash-alt eliminar ml-3" data-toggle="tooltip" data-placement="right" title="Eliminar" (click)='eliminarProducto(row)'></i>
+        </div>
+    </div>
+</div>

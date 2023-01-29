@@ -1,0 +1,220 @@
+<section id="basic-form-layouts">
+    <div class="row text-left">
+        <div class="col-sm-12">
+            <div class="content-header" style="margin-top: -17px;">Horarios de Sucursal </div>
+        </div>
+    </div>
+
+    <div class="row text-left" *ngIf="idTurnoEdit != null">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="px-3">
+                        <form class="form" [formGroup]="turnoForm">
+                            <div class="form-body mt-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="diaDeLaSemana">Día</label>
+                                            <input readonly type="text" id="diaDeLaSemana" class="form-control border-primary" value="{{diaDeLaSemana()}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="abierto">Abierto</label>
+
+                                            <ng-select class="sabor-select" formControlName="abierto" [items]="estadoAbierto" bindLabel="nombre" bindValue="valor" [multiple]="false" [clearable]="false">
+                                            </ng-select>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.abierto">
+                                                <div class="error-message" *ngIf="turnoForm.get('abierto').hasError(validation.type) && (turnoForm.get('abierto').dirty || turnoForm.get('abierto').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="abierto">Horario corrido</label>
+
+                                            <ng-select class="sabor-select" formControlName="horarioDeCorrido" [items]="estadoAbierto" bindLabel="nombre" bindValue="valor" [multiple]="false" [clearable]="false" [(ngModel)]="isCorrido">
+                                            </ng-select>
+                                        </div>
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.abierto">
+                                                <div class="error-message" *ngIf="turnoForm.get('horarioDeCorrido').hasError(validation.type) && (turnoForm.get('horarioDeCorrido').dirty || turnoForm.get('horarioDeCorrido').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row" style="margin-bottom: 25px;">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inicio">Apertura (primer turno)</label>
+                                            <div class="ngx-timepicker-field-example">
+                                                <ngx-timepicker-field [format]="24" [defaultTime]="'11:11 am'" formControlName="inicioManiana"></ngx-timepicker-field>
+                                            </div>
+                                        </div>
+
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.inicioManiana">
+                                                <div class="error-message" *ngIf="turnoForm.get('inicioManiana').errors?.max || turnoForm.get('inicioManiana').hasError(validation.type) && (turnoForm.get('inicioManiana').dirty || turnoForm.get('inicioManiana').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inicio">Cierre (primer turno)</label>
+                                            <div class="ngx-timepicker-field-example">
+                                                <ngx-timepicker-field [format]="24" [defaultTime]="'11:11 am'" formControlName="finManiana"></ngx-timepicker-field>
+                                            </div>
+                                        </div>
+
+                                        <div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.finManiana">
+                                                <div class="error-message" *ngIf="turnoForm.get('finManiana').errors?.max || turnoForm.get('finManiana').hasError(validation.type) && (turnoForm.get('finManiana').dirty || turnoForm.get('finManiana').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-bottom: 25px" *ngIf="!this.isCorrido">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inicio">Apertura (segundo turno)</label>
+                                            <div class="ngx-timepicker-field-example">
+                                                <ngx-timepicker-field [format]="24" [defaultTime]="'11:11 am'" formControlName="inicioTarde"></ngx-timepicker-field>
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.inicioTarde">
+                                                <div class="error-message"
+                                                    *ngIf="turnoForm.get('inicioTarde').errors?.max || turnoForm.get('inicioTarde').hasError(validation.type) && (turnoForm.get('inicioTarde').dirty || turnoForm.get('inicioTarde').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>-->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="inicio">Cierre (segundo turno)</label>
+                                            <div class="ngx-timepicker-field-example">
+                                                <ngx-timepicker-field [format]="24" [defaultTime]="'11:11 am'" formControlName="finTarde"></ngx-timepicker-field>
+                                            </div>
+                                        </div>
+
+                                        <!--<div class="validation-errors">
+                                            <ng-container *ngFor="let validation of validation_messages.horaInicio">
+                                                <div class="error-message"
+                                                    *ngIf="turnoForm.get('horaInicio').errors?.max || turnoForm.get('horaInicio').hasError(validation.type) && (turnoForm.get('horaInicio').dirty || turnoForm.get('horaInicio').touched)">
+                                                    {{ validation.message }}
+                                                </div>
+                                            </ng-container>
+                                        </div>-->
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button type="button" class="btn btn-raised btn-warning shadow-z-2" (click)="actualizar()" [disabled]="!turnoForm.valid">
+                                <i class="fa fa-check-circle mr-2"></i> Actualizar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card d-none d-sm-block">
+        <div class="card-content">
+            <div class="card-body">
+                <section id="basic-datatable" class="mb-3">
+                    <div class="row mt-3">
+                        <div class="col-sm-12">
+                            <ngx-datatable class="bootstrap" [rows]="turnos" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [rowHeight]="60" [headerHeight]="50" [footerHeight]="50" [reorderable]="reorderable">
+                                <ngx-datatable-column name="Día">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        <label *ngIf="row.diaDeLaSemana == 0">Domingo</label>
+                                        <label *ngIf="row.diaDeLaSemana == 1">Lunes</label>
+                                        <label *ngIf="row.diaDeLaSemana == 2">Martes</label>
+                                        <label *ngIf="row.diaDeLaSemana == 3">Miércoles</label>
+                                        <label *ngIf="row.diaDeLaSemana == 4">Jueves</label>
+                                        <label *ngIf="row.diaDeLaSemana == 5">Viernes</label>
+                                        <label *ngIf="row.diaDeLaSemana == 6">Sábado</label>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Abierto?">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{row.abierto ? 'Si':'No'}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Corrido?">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{row.horarioDeCorrido ? 'Si':'No'}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Apertura (1° turno)">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{row.inicioManiana}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Cierre (1° turno)">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{row.finManiana}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Apertura (2° turno)">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{!row.horarioDeCorrido? '-':row.inicioTarde}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Cierre (2° turno)">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        {{!row.horarioDeCorrido? '-':row.finTarde}}
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Acciones">
+                                    <ng-template let-row="row" ngx-datatable-cell-template>
+                                        <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarTurno(row)'></i>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="card d-lg-none" *ngFor="let row of turnos">
+    <div class="card-body">
+        <h5 class="card-title" *ngIf="row.diaDeLaSemana == 0">Domingo</h5>
+        <h5 class="card-title" *ngIf="row.diaDeLaSemana == 1">Lunes</h5>
+        <h5 class="card-title" *ngIf="row.diaDeLaSemana == 2">Martes</h5>
+        <h5 class="card-title" *ngIf="row.diaDeLaSemana == 3">Miércoles</h5>
+        <h5 class="card-title" *ngIf="row.diaDeLaSemana == 4">Jueves</h5>
+        <h5 class="card-title" *ngIf="row.diaDeLaSemana == 5">Viernes</h5>
+        <h5 class="card-title" *ngIf="row.diaDeLaSemana == 6">Sábado</h5>
+        <h5 class="card-title"><b>Abierto?:</b> {{row.abierto ? 'Si':'No'}}</h5>
+        <h5 class="card-title"><b>Corrido?:</b> {{row.corrido ? 'Si':'No'}}</h5>
+        <h5 class="card-title"><b>Apertura (1° turno):</b> {{row.inicioManiana}}</h5>
+        <h5 class="card-title"><b>Cierre (1° turno):</b> {{row.finManiana}}</h5>
+        <h5 class="card-title"><b>Apertura (2° turno):</b> {{!row.horarioDeCorrido? '-':row.inicioTarde}}</h5>
+        <h5 class="card-title"><b>Cierre (2° turno):</b> {{!row.horarioDeCorrido? '-':row.finTarde}}</h5>
+        <hr>
+        <div class="card-text">
+            <i class="fas fa-pencil-alt editar ml-2" data-toggle="tooltip" data-placement="right" title="Editar" (click)='editarTurno(row)'></i>
+        </div>
+    </div>
+</div>
