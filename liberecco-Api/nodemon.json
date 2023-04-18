@@ -1,0 +1,15 @@
+{
+    "restartable": "rs",
+    "verbose": true,
+    "watch": [
+        "src/",
+        "test/specs/"
+    ],
+    "ignore": [
+      "src/public"
+    ],
+    "ext": "ts",
+    "env": {
+        "NODE_ENV": "development"
+    }
+}

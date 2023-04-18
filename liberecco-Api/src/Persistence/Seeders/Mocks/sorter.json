@@ -1,0 +1,11 @@
+{
+  "sorter": [
+    {
+      "name": "Sorter",
+      "active": true,
+      "columns":3,
+      "heights":7,
+      "warehouse":3
+    }
+  ]
+}

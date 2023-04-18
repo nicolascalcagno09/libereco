@@ -1,0 +1,64 @@
+{
+  "zonesColors": [
+    {
+      "name" : "b388ff",
+      "hex": "#b388ff"
+    },
+    {
+      "name" : "ccff90",
+      "hex": "#ccff90"
+    },
+    {
+      "name" : "ff9e80",
+      "hex": "#ff9e80"
+    },
+    {
+      "name" : "ea80fc",
+      "hex": "#ea80fc"
+    },
+    {
+      "name" : "a7ffeb",
+      "hex": "#a7ffeb"
+    },
+    {
+      "name" : "ffd180",
+      "hex": "#ffd180"
+    },
+    {
+      "name" : "82b1ff",
+      "hex": "#82b1ff"
+    },
+    {
+      "name" : "ffe57f",
+      "hex": "#ffe57f"
+    },
+    {
+      "name" : "ff80ab",
+      "hex": "#ff80ab"
+    },
+    {
+      "name" : "f4ff81",
+      "hex": "#f4ff81"
+    },
+    {
+      "name" : "b9f6ca",
+      "hex": "#b9f6ca"
+    },
+    {
+      "name" : "8c9eff",
+      "hex": "#8c9eff"
+    },
+    {
+      "name" : "84ffff",
+      "hex": "#ffff8d"
+    },
+    {
+      "name" : "ff8a80",
+      "hex": "#ff8a80"
+    },
+    {
+      "name" : "80d8ff",
+      "hex": "#80d8ff"
+    }
+  ]
+}

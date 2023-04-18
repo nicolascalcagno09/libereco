@@ -1,0 +1,24 @@
+{
+  "fourColors": [
+    {
+      "name": "Amarillo",
+      "ref": 0,
+      "hex": "#FFE600"
+    },
+    {
+      "name": "Verde",
+      "ref": 1,
+      "hex": "#0C9D58"
+    },
+    {
+      "name": "Rojo",
+      "ref": 2,
+      "hex": "#DB4437"
+    },
+    {
+      "name": "Azul",
+      "ref": 3,
+      "hex": "#1B91FF"
+    }
+  ]
+}

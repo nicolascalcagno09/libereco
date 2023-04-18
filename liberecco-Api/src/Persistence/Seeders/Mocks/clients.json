@@ -1,0 +1,10 @@
+{
+  "clients": [
+    {
+      "name": "lib-client",
+      "secret": "secret",
+      "description": "Liberecco Client",
+      "enabled": true
+    }
+  ]
+}

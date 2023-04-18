@@ -1,0 +1,26 @@
+{
+  "basePath": "/api",
+  "definitions": {},
+  "info": {
+    "description": "Sistema de Vinculacion",
+    "title": "Vinculacion",
+    "version": "0.0.0"
+  },
+  "paths": {
+  },
+  "swagger": "2.0",
+  "securityDefinitions": {
+    "api_key": {
+      "type": "apiKey",
+      "name": "access_token",
+      "in": "query"
+    },
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "host": "localhost:3000",
+  "responses": {},
+  "parameters": {},
+  "tags": []
+}

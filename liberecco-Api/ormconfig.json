@@ -1,0 +1,21 @@
+{
+   "type": "mysql",
+   "host": "localhost",
+   "port": 3306,
+   "name": "default",
+   "username": "deckard",
+   "password": "password",
+   "database": "krack",
+   "synchronize": true,
+   "logging": false,
+   "entities": [
+      "./src/API/Application/Domain/Entities/**/*.ts"
+   ],
+   "migrations": [
+      "./src/Persistence/Migrations/*.ts"
+   ],
+   "cli": {
+      "entitiesDir": "./src/API/Application/Domain/Entities",
+      "migrationsDir": "./src/Persistence/Migrations"
+   }
+}

@@ -1,0 +1,21 @@
+{
+    "swagger": {
+        "outputDirectory": "./src/API/Config/",
+        "entryFile": "./src/index.ts",
+        "host": "localhost:3000",
+        "version": "0.0.0",
+        "name": "Vinculacion",
+        "description": "Sistema de Vinculacion",
+        "basePath": "/api",
+	 "apis": [
+ 	   "./src/API/Routes/**/*"
+ 	 ],
+        "securityDefinitions": {
+            "api_key": {
+                "type": "apiKey",
+                "name": "access_token",
+                "in": "query"
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+basePath: /api
+definitions: {}
+info:
+    description: 'Sistema de Vinculacion Unnoba'
+    title: 'Vinculacion 2020'
+    version: 0.0.0
+paths:
+    /users:
+        get:
+            operationId: UserServicesGetAll
+            produces:
+                - text/html
+            responses:
+                '200':
+                    description: 'Retrieve a list of people.'
+                    schema:
+                        type: string
+                '204':
+                    description: 'No content'
+            description: ""
+            consumes:
+                - application/json
+            parameters: []
+    '/users/{id}':
+        get:
+            operationId: UserServicesGetById
+            produces:
+                - text/html
+            responses:
+                '204':
+                    description: 'No content'
+            description: ""
+            consumes:
+                - application/json
+            parameters:
+                -
+                    description: ""
+                    in: path
+                    name: id
+                    required: true
+                    type: number
+                    format: double
+swagger: '2.0'
+securityDefinitions:
+    api_key:
+        type: apiKey
+        name: access_token
+        in: query
+host: 'localhost:3000'
