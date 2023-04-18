@@ -93,6 +93,7 @@
         "@types/node": "^11.13.13",
         "@types/socket.io": "^3.0.2",
         "amqplib": "^0.5.5",
+        "axios": "^0.26.1",
         "body-parser": "^1.19.0",
         "cors": "^2.8.5",
         "dotenv": "^6.2.0",
@@ -100,6 +101,8 @@
         "express": "^4.17.1",
         "express-formidable": "^1.2.0",
         "express-list-endpoints": "git+https://github.com/emirhg/express-list-endpoints.git#feature/routeParamPattern",
+        "firebase-admin": "9.3.0",
+        "firebase-functions": "^3.11.0",
         "hydra-express": "^1.7.1",
         "is-base64": "^0.1.0",
         "joi": "^14.3.1",
@@ -120,10 +123,7 @@
         "twilio": "^3.54.0",
         "typeorm": "0.2.25",
         "uuid": "^3.3.2",
-        "yargs": "^13.2.4",
-        "firebase-admin": "9.3.0",
-        "firebase-functions": "^3.11.0",
-        "axios": "^0.26.1"
+        "yargs": "^13.2.4"
     },
     "devDependencies": {
         "@types/chai-as-promised": "^7.1.0",
